@@ -13,25 +13,19 @@ public class trieMotsWordle {
         // Le texte est ensuite decoupe en groupes de lettres
         String[] tableauGroupesLettres = leTexte.decoupe();
 
-        HashMap<String, Integer> mapMots = new HashMap<String, Integer>();
+        HashSet<String> mapMots = new HashSet<String>();
 
         for (int i = 0; i < tableauGroupesLettres.length; i++) {
 
             String groupeLettres = tableauGroupesLettres[i];
-
-            // System.out.println(groupeLettres);
-            if (!mapMots.containsKey(groupeLettres)) {
-                mapMots.put(groupeLettres, 0);
-            }
-            int val = mapMots.get(groupeLettres);
-            mapMots.put(groupeLettres, val + 1);
+            mapMots.add(groupeLettres);
         }
 
         LinkedList<String> list = new LinkedList<String>();
 
         // ajoute les mots dans une liste
 
-        for (String key : mapMots.keySet()) {
+        for (String key : mapMots) {
             list.add(key);
         }
 
