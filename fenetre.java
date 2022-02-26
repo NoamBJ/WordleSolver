@@ -4,8 +4,9 @@ import javax.swing.*;
 import net.codejava.swing.hyperlink.JHyperlink;
 
 public class fenetre extends JFrame {
-    private JButton[] txtlettre = new JButton[30];
+    private JButton[][] txtlettre = new JButton[5][6];
     private JButton[] toucheClavier = new JButton[26];
+    int x = 0;
 
     public fenetre() {
 
@@ -40,15 +41,18 @@ public class fenetre extends JFrame {
 
         // sert a rien il va falloir remplacer par des textfield ou atre chose jsp
         for (int i = 0; i < txtlettre.length; i++) {
-            txtlettre[i] = new JButton();
-            txtlettre[i].setEnabled(false);
-            txtlettre[i].setForeground(Color.white);
-            txtlettre[i].setBackground(Color.black);
-            txtlettre[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-            txtlettre[i].setOpaque(false);
-            txtlettre[i].setFont(new Font("Arial", Font.BOLD, 42));
+            for (int j = 0; j < txtlettre[i].length; j++) {
+                txtlettre[i][j] = new JButton();
+                txtlettre[i][j].setEnabled(false);
+                txtlettre[i][j].setForeground(Color.white);
+                txtlettre[i][j].setBackground(Color.black);
+                txtlettre[i][j].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
+                txtlettre[i][j].setOpaque(false);
+                txtlettre[i][j].setFont(new Font("Arial", Font.BOLD, 42));
 
-            p2.add(txtlettre[i]);
+                p2.add(txtlettre[i][j]);
+            }
+
         }
 
         // Panel gauche et droite afin de centrer la grille
@@ -118,7 +122,7 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row1.charAt(i)), txtlettre));
+                            new EcouteurLettre(this, Character.toString(row1.charAt(i)), txtlettre, x));
             ligne1.add(toucheClavier[i]);
 
         }
@@ -136,7 +140,7 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row2.charAt(i)), txtlettre));
+                            new EcouteurLettre(this, Character.toString(row2.charAt(i)), txtlettre, x));
             ligne2.add(toucheClavier[i]);
         }
 
@@ -148,6 +152,8 @@ public class fenetre extends JFrame {
         enter.setPreferredSize(new Dimension(60, 40));
         enter.setFocusable(false);
         enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        enter.addActionListener(new EcouteurEnter(this, txtlettre));
+
         ligne3.add(enter);
 
         String row3 = "ZXCVBNM";
@@ -163,7 +169,7 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row3.charAt(i)), txtlettre));
+                            new EcouteurLettre(this, Character.toString(row3.charAt(i)), txtlettre, x));
             ligne3.add(toucheClavier[i]);
         }
 
@@ -174,7 +180,7 @@ public class fenetre extends JFrame {
         delete.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
         delete.setPreferredSize(new Dimension(60, 40));
         delete.setFocusable(false);
-        delete.addActionListener(new EcouteurDelete(this, txtlettre));
+        delete.addActionListener(new EcouteurDelete(this, txtlettre, x));
         delete.setContentAreaFilled(false);
         ligne3.add(delete);
 
@@ -211,14 +217,23 @@ public class fenetre extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenSize.width, screenSize.height);
         setVisible(true);
+
     }
 
     public int caseVide() {
         int i = 0;
-        while (txtlettre[i].getText() != "" && i < txtlettre.length) {
+        while (txtlettre[x][i].getText() != "" && i < txtlettre[x].length) {
             i++;
         }
         return i;
+    }
+
+    public void changementLigne() {
+        x++;
+    }
+
+    public int getX() {
+        return x;
     }
 
 }

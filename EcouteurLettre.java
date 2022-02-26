@@ -6,18 +6,24 @@ import java.util.*;
 public class EcouteurLettre implements ActionListener {
     private fenetre fen;
     private String lettre;
-    private JButton[] txt;
+    private JButton[][] txt;
+    private int x;
 
-    public EcouteurLettre(fenetre fen, String lettre, JButton[] txt) {
+    public EcouteurLettre(fenetre fen, String lettre, JButton[][] txt, int x) {
         this.fen = fen;
         this.lettre = lettre;
         this.txt = txt;
+        this.x = x;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        txt[fen.caseVide()].setText(lettre);
-        txt[fen.caseVide()].setForeground(Color.white);
-        txt[fen.caseVide()].setFont(new Font("Arial", Font.BOLD, 42));
+        int y = fen.caseVide();
+        if (y < txt[x].length - 1) {
+            txt[fen.getX()][fen.caseVide()].setText(lettre);
+            txt[fen.getX()][fen.caseVide()].setForeground(Color.white);
+            txt[fen.getX()][fen.caseVide()].setFont(new Font("Arial", Font.BOLD, 42));
+        }
+
     }
 }
