@@ -14,7 +14,6 @@ public class EcouteurX implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         h.setVisible(false);
-        // new fenetre();
         fen.setVisible(true);
     }
 }

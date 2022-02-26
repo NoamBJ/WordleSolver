@@ -9,15 +9,15 @@ public class HelpFenetre extends JFrame {
         this.fen = fen;
 
         JPanel a = new JPanel();
+
         JButton b = new JButton(new ImageIcon("x_icon.png"));
         a.setBackground(Color.black);
         JLabel pic = new JLabel(new ImageIcon("help_pop_up.png"));
 
         b.setBackground(Color.black);
         b.setBorderPainted(false);
-
+        b.setBounds(screenSize.width - 50, 10, 30, 30);
         b.setBorder(BorderFactory.createEmptyBorder());
-        b.setBounds(screenSize.width - 50, 50, 30, 30);
         b.addActionListener(new EcouteurX(this, fen));
         b.setFocusable(false);
 
@@ -28,6 +28,7 @@ public class HelpFenetre extends JFrame {
         add(a);
 
         setBackground(Color.BLACK);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(screenSize.width, screenSize.height);
         setVisible(true);
 

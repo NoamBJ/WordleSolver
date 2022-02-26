@@ -4,7 +4,8 @@ import javax.swing.*;
 import net.codejava.swing.hyperlink.JHyperlink;
 
 public class fenetre extends JFrame {
-    private JButton[] buttons = new JButton[30];
+    private JButton[] txtlettre = new JButton[30];
+    private JButton[] toucheClavier = new JButton[26];
 
     public fenetre() {
 
@@ -38,13 +39,16 @@ public class fenetre extends JFrame {
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
 
         // sert a rien il va falloir remplacer par des textfield ou atre chose jsp
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new JButton();
-            buttons[i].setBorderPainted(true);
-            buttons[i].setOpaque(false);
-            buttons[i].setBackground(Color.black);
-            buttons[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-            p2.add(buttons[i]);
+        for (int i = 0; i < txtlettre.length; i++) {
+            txtlettre[i] = new JButton();
+            txtlettre[i].setEnabled(false);
+            txtlettre[i].setForeground(Color.white);
+            txtlettre[i].setBackground(Color.black);
+            txtlettre[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
+            txtlettre[i].setOpaque(false);
+            txtlettre[i].setFont(new Font("Arial", Font.BOLD, 42));
+
+            p2.add(txtlettre[i]);
         }
 
         // Panel gauche et droite afin de centrer la grille
@@ -55,7 +59,23 @@ public class fenetre extends JFrame {
 
         // création du Panel du bas
         JPanel pBas = new JPanel();
+        pBas.setLayout(new BorderLayout());
+        JPanel clavier = new JPanel();
+        JPanel noms = new JPanel();
+        JPanel ligne1 = new JPanel();
+        JPanel ligne2 = new JPanel();
+        JPanel ligne3 = new JPanel();
         pBas.setBackground(Color.black);
+        noms.setBackground(Color.black);
+        ligne1.setBackground(Color.black);
+        ligne2.setBackground(Color.black);
+        ligne3.setBackground(Color.black);
+        clavier.setBackground(Color.black);
+
+        ligne1.setPreferredSize(new Dimension(screenSize.width, 50));
+        ligne2.setPreferredSize(new Dimension(screenSize.width, 50));
+        ligne3.setPreferredSize(new Dimension(screenSize.width, 50));
+
         // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
         // auteurs.setEditable(false);
         // auteurs.setBackground(Color.black);
@@ -70,7 +90,93 @@ public class fenetre extends JFrame {
         // auteurs.setBackground(Color.black);
         // auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
         // auteurs.setForeground(Color.decode("#B36200"));
-        // auteurs.setBorder(null);
+        // // auteurs.setBorder(null);
+        // JTextField saisie = new JTextField(50);
+        // saisie.setBackground(Color.black);
+        // saisie.setForeground(Color.WHITE);
+        // saisie.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+
+        // JButton enter = new JButton("ENTER");
+        // enter.setBorderPainted(true);
+        // enter.setOpaque(false);
+        // enter.setForeground(Color.WHITE);
+        // enter.setBackground(Color.black);
+        // enter.setPreferredSize(new Dimension(100, 50));
+        // enter.setFocusable(false);
+        // enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+
+        String row1 = "QWERTYUIOP";
+        for (int i = 0; i < row1.length(); i++) {
+            toucheClavier[i] = new JButton();
+            toucheClavier[i].setText(Character.toString(row1.charAt(i)));
+            toucheClavier[i].setBorderPainted(true);
+            toucheClavier[i].setOpaque(false);
+            toucheClavier[i].setBackground(Color.black);
+            toucheClavier[i].setForeground(Color.white);
+            toucheClavier[i].setFocusable(false);
+            toucheClavier[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+            toucheClavier[i].setPreferredSize(new Dimension(40, 40));
+            toucheClavier[i]
+                    .addActionListener(
+                            new EcouteurLettre(this, Character.toString(row1.charAt(i)), txtlettre));
+            ligne1.add(toucheClavier[i]);
+
+        }
+
+        String row2 = "ASDFGHJKL";
+        for (int i = 0; i < row2.length(); i++) {
+            toucheClavier[i] = new JButton();
+            toucheClavier[i].setText(Character.toString(row2.charAt(i)));
+            toucheClavier[i].setBorderPainted(true);
+            toucheClavier[i].setOpaque(false);
+            toucheClavier[i].setBackground(Color.black);
+            toucheClavier[i].setForeground(Color.white);
+            toucheClavier[i].setFocusable(false);
+            toucheClavier[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+            toucheClavier[i].setPreferredSize(new Dimension(40, 40));
+            toucheClavier[i]
+                    .addActionListener(
+                            new EcouteurLettre(this, Character.toString(row2.charAt(i)), txtlettre));
+            ligne2.add(toucheClavier[i]);
+        }
+
+        JButton enter = new JButton("ENTER");
+        enter.setBorderPainted(true);
+        enter.setOpaque(false);
+        enter.setForeground(Color.WHITE);
+        enter.setBackground(Color.black);
+        enter.setPreferredSize(new Dimension(60, 40));
+        enter.setFocusable(false);
+        enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        ligne3.add(enter);
+
+        String row3 = "ZXCVBNM";
+        for (int i = 0; i < row3.length(); i++) {
+            toucheClavier[i] = new JButton();
+            toucheClavier[i].setText(Character.toString(row3.charAt(i)));
+            toucheClavier[i].setBorderPainted(true);
+            toucheClavier[i].setOpaque(false);
+            toucheClavier[i].setBackground(Color.black);
+            toucheClavier[i].setForeground(Color.white);
+            toucheClavier[i].setFocusable(false);
+            toucheClavier[i].setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+            toucheClavier[i].setPreferredSize(new Dimension(40, 40));
+            toucheClavier[i]
+                    .addActionListener(
+                            new EcouteurLettre(this, Character.toString(row3.charAt(i)), txtlettre));
+            ligne3.add(toucheClavier[i]);
+        }
+
+        JButton delete = new JButton(new ImageIcon("delete_icon.png"));
+        delete.setBackground(Color.black);
+        delete.setBorderPainted(true);
+        delete.setOpaque(false);
+        delete.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        delete.setPreferredSize(new Dimension(60, 40));
+        delete.setFocusable(false);
+        delete.addActionListener(new EcouteurDelete(this, txtlettre));
+        delete.setContentAreaFilled(false);
+        ligne3.add(delete);
 
         // ajout des composants
 
@@ -83,10 +189,17 @@ public class fenetre extends JFrame {
         add(p2, BorderLayout.CENTER);
         p2.setPreferredSize(new Dimension(200, 200));
         // pBas.add(auteurs);
-        pBas.add(sarah);
-        pBas.add(paul);
-        pBas.add(noam);
-        pBas.add(moha);
+        noms.add(sarah);
+        noms.add(paul);
+        noms.add(noam);
+        noms.add(moha);
+        pBas.add(noms, BorderLayout.NORTH);
+        clavier.add(ligne1);
+        clavier.add(ligne2);
+        clavier.add(ligne3);
+        // zoneSaisie.add(saisie);
+        // zoneSaisie.add(enter);
+        pBas.add(clavier, BorderLayout.CENTER);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
         add(pGauche, BorderLayout.WEST);
@@ -99,4 +212,13 @@ public class fenetre extends JFrame {
         setSize(screenSize.width, screenSize.height);
         setVisible(true);
     }
+
+    public int caseVide() {
+        int i = 0;
+        while (txtlettre[i].getText() != "" && i < txtlettre.length) {
+            i++;
+        }
+        return i;
+    }
+
 }
