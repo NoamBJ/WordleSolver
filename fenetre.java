@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
+import net.codejava.swing.hyperlink.JHyperlink;
+
 public class fenetre extends JFrame {
     private JButton[] buttons = new JButton[30];
 
@@ -12,13 +14,23 @@ public class fenetre extends JFrame {
 
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
+        pHaut.setLayout(new BorderLayout());
         pHaut.setBackground(Color.BLACK);
-        JTextField wordle = new JTextField("Worlde");
+        JButton help = new JButton(new ImageIcon("iconHelp.png"));
+        JTextField wordle = new JTextField("Wordle");
         wordle.setEditable(false);
         wordle.setBackground(Color.black);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
+        wordle.setHorizontalAlignment(JTextField.CENTER);
+
+        help.setBackground(Color.black);
+        help.setBorderPainted(false);
+        help.setOpaque(false);
+        help.setBorder(BorderFactory.createEmptyBorder());
+        help.setBounds(25, 35, 29, 28);
+        help.addActionListener(new ecouteurHelp(this));
 
         // création de la grille au milieu
         JPanel p2 = new JPanel();
@@ -44,23 +56,37 @@ public class fenetre extends JFrame {
         // création du Panel du bas
         JPanel pBas = new JPanel();
         pBas.setBackground(Color.black);
-        JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
-        auteurs.setEditable(false);
-        auteurs.setBackground(Color.black);
-        auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
-        auteurs.setForeground(Color.decode("#B36200"));
-        auteurs.setBorder(null);
+        // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
+        // auteurs.setEditable(false);
+        // auteurs.setBackground(Color.black);
+        // auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
+        // auteurs.setForeground(Color.decode("#B36200"));
+        // auteurs.setBorder(null);
+        JHyperlink sarah = new JHyperlink("S.Pignol,", "https://www.instagram.com/sarah.pgl/");
+        JHyperlink paul = new JHyperlink("P.Rochaix,", "https://www.instagram.com/paulo.rchx/");
+        JHyperlink noam = new JHyperlink("N.Bires,", "https://www.instagram.com/noambires/");
+        JHyperlink moha = new JHyperlink("Mention honorable à Moha.", "https://www.instagram.com/mohamedfayala/");
+        // auteurs.setEditable(false);
+        // auteurs.setBackground(Color.black);
+        // auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
+        // auteurs.setForeground(Color.decode("#B36200"));
+        // auteurs.setBorder(null);
 
         // ajout des composants
 
         pack();
 
+        pHaut.add(help);
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
         pHaut.setPreferredSize(new Dimension(1000, 100));
         add(p2, BorderLayout.CENTER);
         p2.setPreferredSize(new Dimension(200, 200));
-        pBas.add(auteurs);
+        // pBas.add(auteurs);
+        pBas.add(sarah);
+        pBas.add(paul);
+        pBas.add(noam);
+        pBas.add(moha);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
         add(pGauche, BorderLayout.WEST);
