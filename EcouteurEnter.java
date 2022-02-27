@@ -23,7 +23,7 @@ public class EcouteurEnter implements ActionListener {
 
     public String getMot() {
         StringBuilder sb = new StringBuilder("");
-        for (int i = 0; i < txt[fen.getX()].length - 1; i++) {
+        for (int i = 0; i < txt[fen.getX()].length; i++) {
             sb.append(txt[fen.getX()][i]);
         }
         return sb.toString();

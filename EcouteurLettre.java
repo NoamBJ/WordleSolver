@@ -19,7 +19,7 @@ public class EcouteurLettre implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int y = fen.caseVide();
-        if (y < txt[x].length - 1) {
+        if (y < txt[x].length) {
             txt[fen.getX()][fen.caseVide()].setText(lettre);
             txt[fen.getX()][fen.caseVide()].setForeground(Color.white);
             txt[fen.getX()][fen.caseVide()].setFont(new Font("Arial", Font.BOLD, 42));

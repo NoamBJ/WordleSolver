@@ -4,7 +4,7 @@ import javax.swing.*;
 import net.codejava.swing.hyperlink.JHyperlink;
 
 public class fenetre extends JFrame {
-    private JButton[][] txtlettre = new JButton[5][6];
+    private JButton[][] txtlettre = new JButton[6][5];
     private JButton[] toucheClavier = new JButton[26];
     int x = 0;
 
@@ -221,11 +221,18 @@ public class fenetre extends JFrame {
     }
 
     public int caseVide() {
-        int i = 0;
-        while (txtlettre[x][i].getText() != "" && i < txtlettre[x].length) {
-            i++;
+        int val = -1;
+
+        for (int i = 0; i < txtlettre[x].length; i++) {
+            if (txtlettre[x][i].getText() == "") {
+                val = i;
+                break;
+            } else if (txtlettre[x][txtlettre[x].length - 1].getText() != "") {
+                val = txtlettre[x].length;
+                break;
+            }
         }
-        return i;
+        return val;
     }
 
     public void changementLigne() {
