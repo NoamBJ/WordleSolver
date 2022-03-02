@@ -15,7 +15,9 @@ public class findWord {
 
         List<String> list = Arrays.asList(tableauGroupesLettres);
         for (String word : list) {
-            if (word.charAt(4) == 'e') {
+            if (word.charAt(4) == 'e' && word.charAt(3) == 'e' && word.contains("r") && !word.contains("s")
+                    && !word.contains("a") && !word.contains("l") && !word.contains("t") && !word.contains("c")
+                    && !word.contains("h") && !word.contains("d") && !word.contains("o")) {
                 System.out.println(word);
             }
         }

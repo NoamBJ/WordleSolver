@@ -1,5 +1,7 @@
 import java.awt.*;
+import java.util.*;
 import javax.swing.*;
+import java.util.List;
 
 import net.codejava.swing.hyperlink.JHyperlink;
 
@@ -8,11 +10,28 @@ public class fenetre extends JFrame {
     private JButton[] toucheClavier = new JButton[26];
     int x = 0;
 
+    // création liste tableau
+    String nomDuFichierALire = "wordListOrdered.txt";
+    Texte leTexte = new Texte(nomDuFichierALire);
+    String[] tableauGroupesLettres = leTexte.decoupe();
+    List<String> list = Arrays.asList(tableauGroupesLettres);
+
+    Texte mots_reponse = new Texte("wordle-guesses.txt");
+    String[] tableau_reponse = leTexte.decoupe();
+    String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
+
+    String alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
+
     public fenetre() {
 
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
+
+        for (int i = 0; i < alphabet.length(); i++) {
+            map.put(String.valueOf(alphabet.charAt(i)), i);
+        }
 
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
@@ -39,16 +58,16 @@ public class fenetre extends JFrame {
         p2.setBackground(Color.black);
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
 
-        // sert a rien il va falloir remplacer par des textfield ou atre chose jsp
         for (int i = 0; i < txtlettre.length; i++) {
             for (int j = 0; j < txtlettre[i].length; j++) {
                 txtlettre[i][j] = new JButton();
-                txtlettre[i][j].setEnabled(false);
+                // txtlettre[i][j].setEnabled(false); marche pas avec false
                 txtlettre[i][j].setForeground(Color.white);
                 txtlettre[i][j].setBackground(Color.black);
                 txtlettre[i][j].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
                 txtlettre[i][j].setOpaque(false);
                 txtlettre[i][j].setFont(new Font("Arial", Font.BOLD, 42));
+                txtlettre[i][j].setFocusable(false);
 
                 p2.add(txtlettre[i][j]);
             }
@@ -112,7 +131,7 @@ public class fenetre extends JFrame {
         String row1 = "QWERTYUIOP";
         for (int i = 0; i < row1.length(); i++) {
             toucheClavier[i] = new JButton();
-            toucheClavier[i].setText(Character.toString(row1.charAt(i)));
+            toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
             toucheClavier[i].setBorderPainted(true);
             toucheClavier[i].setOpaque(false);
             toucheClavier[i].setBackground(Color.black);
@@ -122,15 +141,15 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row1.charAt(i)), txtlettre, x));
+                            new EcouteurLettre(this, Character.toString(alphabet.charAt(i)), txtlettre, x));
             ligne1.add(toucheClavier[i]);
 
         }
 
         String row2 = "ASDFGHJKL";
-        for (int i = 0; i < row2.length(); i++) {
+        for (int i = row1.length(); i < row1.length() + row2.length(); i++) {
             toucheClavier[i] = new JButton();
-            toucheClavier[i].setText(Character.toString(row2.charAt(i)));
+            toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
             toucheClavier[i].setBorderPainted(true);
             toucheClavier[i].setOpaque(false);
             toucheClavier[i].setBackground(Color.black);
@@ -140,7 +159,7 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row2.charAt(i)), txtlettre, x));
+                            new EcouteurLettre(this, Character.toString(alphabet.charAt(i)), txtlettre, x));
             ligne2.add(toucheClavier[i]);
         }
 
@@ -152,14 +171,14 @@ public class fenetre extends JFrame {
         enter.setPreferredSize(new Dimension(60, 40));
         enter.setFocusable(false);
         enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
-        enter.addActionListener(new EcouteurEnter(this, txtlettre));
+        enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map));
 
         ligne3.add(enter);
 
         String row3 = "ZXCVBNM";
-        for (int i = 0; i < row3.length(); i++) {
+        for (int i = row1.length() + row2.length(); i < row1.length() + row2.length() + row3.length(); i++) {
             toucheClavier[i] = new JButton();
-            toucheClavier[i].setText(Character.toString(row3.charAt(i)));
+            toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
             toucheClavier[i].setBorderPainted(true);
             toucheClavier[i].setOpaque(false);
             toucheClavier[i].setBackground(Color.black);
@@ -169,7 +188,7 @@ public class fenetre extends JFrame {
             toucheClavier[i].setPreferredSize(new Dimension(40, 40));
             toucheClavier[i]
                     .addActionListener(
-                            new EcouteurLettre(this, Character.toString(row3.charAt(i)), txtlettre, x));
+                            new EcouteurLettre(this, Character.toString(alphabet.charAt(i)), txtlettre, x));
             ligne3.add(toucheClavier[i]);
         }
 
@@ -213,6 +232,8 @@ public class fenetre extends JFrame {
         add(pDroit, BorderLayout.EAST);
         pDroit.setPreferredSize(marge);
 
+        // testHashmap();
+
         setBackground(Color.BLACK);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenSize.width, screenSize.height);
@@ -235,12 +256,44 @@ public class fenetre extends JFrame {
         return val;
     }
 
-    public void changementLigne() {
-        x++;
+    public boolean changementLigne() {
+        boolean b = false;
+        if (txtlettre[x][txtlettre[x].length - 1].getText() != "") {
+            x++;
+            b = true;
+        }
+        return b;
     }
 
     public int getX() {
         return x;
     }
 
+    public boolean verifieMot(String s) {
+        boolean b = false;
+        if (list.contains(s)) {
+            b = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "The word you entered is incorrect.");
+        }
+        return b;
+    }
+
+    public String getMot() {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < txtlettre[getX()].length; i++) {
+            sb.append(txtlettre[getX()][i].getText().toLowerCase());
+        }
+        return sb.toString();
+    }
+
+    public String getReponse() {
+        return reponse.toLowerCase();
+    }
+
+    public void testHashmap() {
+        for (Map.Entry<String, Integer> a : map.entrySet()) {
+            System.out.println(a.getKey() + "/" + a.getValue());
+        }
+    }
 }
