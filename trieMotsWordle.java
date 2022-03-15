@@ -19,6 +19,7 @@ public class trieMotsWordle {
 
         Collections.sort(list);
         for (String a : list) {
+System.out.println(a);
             writer.println(a);
         }
         writer.close();
