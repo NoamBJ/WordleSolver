@@ -11,7 +11,7 @@ public class fenetre extends JFrame {
     int x = 0;
 
     // création liste tableau
-    String nomDuFichierALire = "wordListOrdered.txt";
+    String nomDuFichierALire = "dicoOrdered.txt";
     Texte leTexte = new Texte(nomDuFichierALire);
     String[] tableauGroupesLettres = leTexte.decoupe();
     List<String> list = Arrays.asList(tableauGroupesLettres);
@@ -108,6 +108,8 @@ public class fenetre extends JFrame {
         JHyperlink sarah = new JHyperlink("S.Pignol,", "https://www.instagram.com/sarah.pgl/");
         JHyperlink paul = new JHyperlink("P.Rochaix,", "https://www.instagram.com/paulo.rchx/");
         JHyperlink noam = new JHyperlink("N.Bires,", "https://www.instagram.com/noambires/");
+        JHyperlink clara = new JHyperlink("C.Lemiere,", "https://www.instagram.com/c.l.banana/");
+        JHyperlink satine = new JHyperlink("S.Mialon,", "https://www.instagram.com/sat.mln11/");
         JHyperlink moha = new JHyperlink("Mention honorable à Moha.", "https://www.instagram.com/mohamedfayala/");
         // auteurs.setEditable(false);
         // auteurs.setBackground(Color.black);
@@ -217,6 +219,8 @@ public class fenetre extends JFrame {
         noms.add(sarah);
         noms.add(paul);
         noms.add(noam);
+        noms.add(clara);
+        noms.add(satine);     
         noms.add(moha);
         pBas.add(noms, BorderLayout.NORTH);
         clavier.add(ligne1);

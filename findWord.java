@@ -5,7 +5,7 @@ public class findWord {
 
     public static void main(String[] args) {
 
-        String nomDuFichierALire = "wordListOrdered.txt";
+        String nomDuFichierALire = "dicoOrdered.txt";
 
         // Lecture du fichier et creation du texte en memoire:
         Texte leTexte = new Texte(nomDuFichierALire);
