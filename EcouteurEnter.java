@@ -11,7 +11,7 @@ public class EcouteurEnter implements ActionListener {
     private JButton[] clavier;
     private HashMap<String, Integer> m;
 
-    String nomDuFichierALire = "wordListOrdered.txt";
+    String nomDuFichierALire = "dicoOrdered.txt";
 
     public EcouteurEnter(fenetre fen, JButton[][] txt, JButton[] clavier, HashMap<String, Integer> m) {
         this.fen = fen;

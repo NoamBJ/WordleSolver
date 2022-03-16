@@ -4,8 +4,8 @@ import java.util.*;
 public class trieMotsWordle {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
-        String nomDuFichierALire = "wordleList.txt";
-        PrintWriter writer = new PrintWriter("wordListOrdered.txt", "UTF-8");
+        String nomDuFichierALire = "dictionnaire.txt";
+        PrintWriter writer = new PrintWriter("dicoOrdered.txt", "UTF-8");
 
         // Lecture du fichier et creation du texte en memoire:
         Texte leTexte = new Texte(nomDuFichierALire);
@@ -19,7 +19,19 @@ public class trieMotsWordle {
 
         Collections.sort(list);
         for (String a : list) {
-            writer.println(a);
+			if(a.length() == 5){
+				boolean yesLife = true;
+				Character[] listeMerde = new Character[10];
+				listeMerde[0] = 'Ã';
+				for(int i = 0; i<5 ;  i++){
+					if(a.charAt(i) == listeMerde[0]){
+						yesLife = false;
+					} 
+				}
+				if(yesLife){
+					writer.println(a);
+				}
+			}
         }
         writer.close();
     }
