@@ -36,14 +36,12 @@ public class EcouteurEnter implements ActionListener {
                 kelawin(word, input);
             }
 
-        } else {
-            System.out.println("Réessayez ce n'est pas un mot");
         }
-
     }
 
     public void containChar(String word, String input) {
 
+        boolean b = true;
         LinkedList<Character> l = new LinkedList<>();
 
         for (int i = 0; i < word.length(); i++) {
@@ -61,9 +59,10 @@ public class EcouteurEnter implements ActionListener {
             else if (word.charAt(i) == input.charAt(i)) {
                 txt[fen.getX() - 1][i].setForeground(Color.green);
                 clavier[value].setForeground(Color.green);
+                b = false;
             }
 
-            else if (l.contains(input.charAt(i))) {
+            else if (l.contains(input.charAt(i)) && b == true) {
                 txt[fen.getX() - 1][i].setForeground(Color.orange);
                 clavier[value].setForeground(Color.orange);
             } else {
