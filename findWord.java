@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class FindWord {
+public class findWord {
 
     Texte leTexte = new Texte("dicoOrdered.txt");
 
