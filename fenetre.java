@@ -20,7 +20,7 @@ public class fenetre extends JFrame {
     String[] tableau_reponse = leTexte.decoupe();
     String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
 
-    String alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
     public fenetre() {
