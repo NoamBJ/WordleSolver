@@ -18,9 +18,8 @@ public class fenetre extends JFrame {
 
     Texte mots_reponse = new Texte("wordle-guesses.txt");
     String[] tableau_reponse = leTexte.decoupe();
-    // String reponse = tableau_reponse[(int) (Math.random() *
-    // tableau_reponse.length)];
-    String reponse = "nasse";
+    String reponse = tableau_reponse[(int) (Math.random() *
+            tableau_reponse.length)];
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
