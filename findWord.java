@@ -3,18 +3,25 @@ import java.io.*;
 
 public class findWord {
 
-    Texte leTexte = new Texte("dicoOrdered.txt");
-
-    String[] tableauGroupesLettres = leTexte.decoupe();
-    List<String> list = Arrays.asList(tableauGroupesLettres);
-
     public static void main(String[] args) {
+        Texte leTexte = new Texte("dicoOrdered.txt");
 
-        String mot = "DROLE";
+        String[] tableauGroupesLettres = leTexte.decoupe();
+        List<String> list = Arrays.asList(tableauGroupesLettres);
+
+        Scanner sc = new Scanner(System.in);
+        String reponse = "DROLE";
+        System.out.println("La reponse est " + reponse);
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Entrez votre mot ");
+            String input = sc.nextLine();
+            litMots(input, list);
+        }
 
     }
 
-    public void litMots(String s) {
+    public static void litMots(String s, List list) {
 
         // s = DROLE01210 par exemple
         int faux = 0;
@@ -33,6 +40,13 @@ public class findWord {
         for (int i = 0; i < s.length() / 2; i++) {
             if (s.charAt(i + 5) == '0') {
                 hsFaux.add(s.charAt(i));
+                // supprime les mots ne contenant pas la lettre
+                // for (String mots : list) {
+                // if (mots.contains(String.valueOf(s.charAt(i)))) {
+                // list.remove(mots);
+                // }
+                // }
+
             } else if (s.charAt(i + 5) == '1') {
                 listeMoyen.add(s.charAt(i));
             } else {
@@ -43,10 +57,7 @@ public class findWord {
         // parcourir faux moyen et bon pour ajouter en conditons dans le if
 
         for (String mots : list) {
-            // if ()
-
             System.out.println(mots);
-
         }
     }
 }
