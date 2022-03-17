@@ -132,7 +132,7 @@ public class fenetre extends JFrame {
         // enter.setFocusable(false);
         // enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
 
-        String row1 = "QWERTYUIOP";
+        String row1 = "AZERTYUIOP";
         for (int i = 0; i < row1.length(); i++) {
             toucheClavier[i] = new JButton();
             toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
@@ -150,7 +150,7 @@ public class fenetre extends JFrame {
 
         }
 
-        String row2 = "ASDFGHJKL";
+        String row2 = "QSDFGHJKLM";
         for (int i = row1.length(); i < row1.length() + row2.length(); i++) {
             toucheClavier[i] = new JButton();
             toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
@@ -179,7 +179,7 @@ public class fenetre extends JFrame {
 
         ligne3.add(enter);
 
-        String row3 = "ZXCVBNM";
+        String row3 = "WXCVBN";
         for (int i = row1.length() + row2.length(); i < row1.length() + row2.length() + row3.length(); i++) {
             toucheClavier[i] = new JButton();
             toucheClavier[i].setText(Character.toString(alphabet.charAt(i)));
