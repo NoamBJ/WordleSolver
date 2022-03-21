@@ -11,7 +11,7 @@ public class fenetre extends JFrame {
     int x = 0;
 
     // création liste tableau
-    String nomDuFichierALire = "dicoOrdered.txt";
+    String nomDuFichierALire = "wordListOrdered.txt";
     Texte leTexte = new Texte(nomDuFichierALire);
     String[] tableauGroupesLettres = leTexte.decoupe();
     List<String> list = Arrays.asList(tableauGroupesLettres);
@@ -47,8 +47,7 @@ public class fenetre extends JFrame {
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
-        
-        
+
         // essaye de rajouter un texte locomotus en plus petit
         locomotus.setEditable(false);
         locomotus.setBackground(Color.black);
@@ -220,7 +219,7 @@ public class fenetre extends JFrame {
 
         pack();
 
-        pHaut.add(help);        
+        pHaut.add(help);
         pHaut.add(locomotus); // il n'affiche pas locomotus... écrasé par le wordle après ?
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
