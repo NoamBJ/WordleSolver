@@ -11,7 +11,7 @@ public class fenetre extends JFrame {
     int x = 0;
 
     // création liste tableau
-    String nomDuFichierALire = "dicoOrdered.txt";
+    String nomDuFichierALire = "wordListOrdered.txt";
     Texte leTexte = new Texte(nomDuFichierALire);
     String[] tableauGroupesLettres = leTexte.decoupe();
     List<String> list = Arrays.asList(tableauGroupesLettres);
