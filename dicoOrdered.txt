@@ -370,7 +370,6 @@ buter
 butin
 butor
 butte
-bÅ“uf
 caban
 cabas
 cabri
@@ -1615,7 +1614,6 @@ nuque
 nurse
 nuton
 nylon
-nÅ“ud
 oasis
 obier
 objet
