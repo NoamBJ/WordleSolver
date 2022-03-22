@@ -38,14 +38,14 @@ public class fenetre extends JFrame {
         pHaut.setLayout(new BorderLayout());
         pHaut.setBackground(Color.BLACK);
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
-        JTextField wordle = new JTextField("Wordle");
-        wordle.setEditable(false);
+        JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
+        /*wordle.setEditable(false);
         wordle.setBackground(Color.black);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
-
+		*/
         help.setBackground(Color.black);
         help.setBorderPainted(false);
         help.setOpaque(false);
