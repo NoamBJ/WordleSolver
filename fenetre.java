@@ -40,7 +40,6 @@ public class fenetre extends JFrame {
         pHaut.setBackground(Color.BLACK);
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
         JTextField wordle = new JTextField("Wordle");
-        JTextField locomotus = new JTextField("by LOCOMOTUS");
         wordle.setEditable(false);
         wordle.setBackground(Color.black);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
@@ -49,12 +48,16 @@ public class fenetre extends JFrame {
         wordle.setHorizontalAlignment(JTextField.CENTER);
 
         // essaye de rajouter un texte locomotus en plus petit
+        JPanel locom = new JPanel();
+        locom.setLayout(new GridLayout());
+        locom.setBackground(Color.BLACK);
+        JTextField locomotus = new JTextField("by LOCOMOTUS");
         locomotus.setEditable(false);
         locomotus.setBackground(Color.black);
         locomotus.setFont(new Font("Arial", Font.BOLD, 15));
         locomotus.setForeground(Color.white);
         locomotus.setBorder(null);
-        locomotus.setHorizontalAlignment(JTextField.RIGHT);
+        locomotus.setHorizontalAlignment(JTextField.CENTER);
 
         help.setBackground(Color.black);
         help.setBorderPainted(false);
@@ -218,9 +221,9 @@ public class fenetre extends JFrame {
         // ajout des composants
 
         pack();
-
+		locom.add(locomotus);
         pHaut.add(help);
-        pHaut.add(locomotus); // il n'affiche pas locomotus... écrasé par le wordle après ?
+        pHaut.add(locom, BorderLayout.SOUTH); // il n'affiche pas locomotus... écrasé par le wordle après ?
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
         pHaut.setPreferredSize(new Dimension(1000, 100));
