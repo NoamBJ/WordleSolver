@@ -101,7 +101,7 @@ public class fenetre extends JFrame {
         JPanel ligne1 = new JPanel();
         JPanel ligne2 = new JPanel();
         JPanel ligne3 = new JPanel();
-        pBas.setBackground(Color.black);
+        pBas.setBackground(Color.white);
         noms.setBackground(Color.black);
         ligne1.setBackground(Color.black);
         ligne2.setBackground(Color.black);
@@ -252,7 +252,7 @@ public class fenetre extends JFrame {
 
         // testHashmap();
 
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenSize.width, screenSize.height);
         setVisible(true);
