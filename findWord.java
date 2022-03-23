@@ -6,16 +6,18 @@ import java.nio.file.Paths;
 
 public class findWord {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws FileNotFoundException {
+        File file = new File("wordListOrdered.txt");
 
-        // reading text file into List in Java 7
-        List<String> lines = Collections.emptyList();
-        try {
-            lines = Files.readAllLines(Paths.get("wordListOrdered.txt"), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        Scanner in = new Scanner(file);
+
+        ArrayList<String> liste = new ArrayList<String>();
+        while (in.hasNext()) {
+            liste.add(in.next());
+        }
+        String[] mots = liste.toArray(new String[liste.size()]);
+        for (String s : mots) {
+            System.out.print(s);
         }
     }
-
 }
