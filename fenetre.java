@@ -37,11 +37,11 @@ public class fenetre extends JFrame {
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
         pHaut.setLayout(new BorderLayout());
-        pHaut.setBackground(Color.BLACK);
+        pHaut.setBackground(Color.WHITE);
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
         JTextField wordle = new JTextField("Wordle");
         wordle.setEditable(false);
-        wordle.setBackground(Color.black);
+        wordle.setBackground(Color.BLACK); //ICI ON PEUT METTRE UNE IMAGE
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
@@ -89,7 +89,8 @@ public class fenetre extends JFrame {
 
         // Panel gauche et droite afin de centrer la grille
         JPanel pGauche = new JPanel();
-        pGauche.setBackground(Color.black);
+        JLabel imageGauche = new JLabel(new ImageIcon("image_gauche.png"));
+        pGauche.setBackground(Color.BLACK);
         JPanel pDroit = new JPanel();
         pDroit.setBackground(Color.black);
 
@@ -242,6 +243,7 @@ public class fenetre extends JFrame {
         clavier.add(ligne3);
         // zoneSaisie.add(saisie);
         // zoneSaisie.add(enter);
+        pGauche.add(imageGauche);
         pBas.add(clavier, BorderLayout.CENTER);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
