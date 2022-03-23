@@ -93,7 +93,8 @@ public class fenetre extends JFrame {
         pGauche.setBackground(Color.BLACK);
         JPanel pDroit = new JPanel();
         pDroit.setBackground(Color.black);
-
+		JLabel imageDroite = new JLabel(new ImageIcon("image_droite.png"));
+        
         // création du Panel du bas
         JPanel pBas = new JPanel();
         pBas.setLayout(new BorderLayout());
@@ -244,6 +245,7 @@ public class fenetre extends JFrame {
         // zoneSaisie.add(saisie);
         // zoneSaisie.add(enter);
         pGauche.add(imageGauche);
+        pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
