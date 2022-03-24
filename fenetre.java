@@ -67,9 +67,19 @@ public class fenetre extends JFrame {
         help.addActionListener(new ecouteurHelp(this));
 
         // création de la grille au milieu
+
+        JPanel centralCee = new JPanel(); //667 équipe
+        centralCee.setBackground(Color.BLACK);
+        centralCee.setLayout(new BorderLayout());
+
         JPanel p2 = new JPanel();
         p2.setBackground(Color.black);
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
+        
+        JPanel textArea = new JPanel();
+        textArea.setBackground(Color.darkGray);
+        JTextField clavierArea = new JTextField(20);
+        textArea.add(clavierArea);
 
         for (int i = 0; i < txtlettre.length; i++) {
             for (int j = 0; j < txtlettre[i].length; j++) {
@@ -229,8 +239,10 @@ public class fenetre extends JFrame {
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
         pHaut.setPreferredSize(new Dimension(1000, 100));
-        add(p2, BorderLayout.CENTER);
-        p2.setPreferredSize(new Dimension(200, 200));
+        centralCee.add(p2);
+        centralCee.add(textArea, BorderLayout.NORTH);
+        add(centralCee, BorderLayout.CENTER);
+        centralCee.setPreferredSize(new Dimension(200, 200));
         // pBas.add(auteurs);
         noms.add(sarah);
         noms.add(paul);
@@ -318,4 +330,5 @@ public class fenetre extends JFrame {
             System.out.println(a.getKey() + "/" + a.getValue());
         }
     }
+
 }
