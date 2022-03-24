@@ -18,7 +18,9 @@ public class fenetre extends JFrame {
 
     Texte mots_reponse = new Texte("wordle-guesses.txt");
     String[] tableau_reponse = leTexte.decoupe();
-    String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
+
+    //réponse
+    String reponse =tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -38,14 +40,15 @@ public class fenetre extends JFrame {
         pHaut.setLayout(new BorderLayout());
         pHaut.setBackground(Color.BLACK);
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
-        JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
-        /*wordle.setEditable(false);
+        //JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
+        JLabel wordle = new JLabel("Wordle");
+        //wordle.setEditable(false);
         wordle.setBackground(Color.black);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
-		*/
+		
         help.setBackground(Color.black);
         help.setBorderPainted(false);
         help.setOpaque(false);
@@ -88,17 +91,20 @@ public class fenetre extends JFrame {
         JPanel ligne1 = new JPanel();
         JPanel ligne2 = new JPanel();
         JPanel ligne3 = new JPanel();
+        JPanel ligne4 = new JPanel();
         pBas.setBackground(Color.black);
         noms.setBackground(Color.black);
         ligne1.setBackground(Color.black);
         ligne2.setBackground(Color.black);
         ligne3.setBackground(Color.black);
+        ligne4.setBackground(Color.black);
         clavier.setBackground(Color.black);
 
         ligne1.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne2.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne3.setPreferredSize(new Dimension(screenSize.width, 50));
-
+        ligne4.setPreferredSize(new Dimension(screenSize.width, 50));
+        
         // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
         // auteurs.setEditable(false);
         // auteurs.setBackground(Color.black);
@@ -194,6 +200,18 @@ public class fenetre extends JFrame {
             ligne3.add(toucheClavier[i]);
         }
 
+        JButton restart = new JButton("RESTART");
+        restart.setBackground(Color.black);
+        restart.setBorderPainted(true);
+        restart.setOpaque(false);
+        restart.setForeground(Color.WHITE);
+        restart.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        restart.setPreferredSize(new Dimension(150, 40));
+        restart.setFocusable(false);
+        restart.addActionListener(new EcouteurRestart(this, txtlettre, toucheClavier));
+        
+        ligne4.add(restart);
+
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
         delete.setBackground(Color.black);
         delete.setBorderPainted(true);
@@ -226,6 +244,7 @@ public class fenetre extends JFrame {
         clavier.add(ligne1);
         clavier.add(ligne2);
         clavier.add(ligne3);
+        clavier.add(ligne4);
         // zoneSaisie.add(saisie);
         // zoneSaisie.add(enter);
         pBas.add(clavier, BorderLayout.CENTER);
@@ -273,6 +292,10 @@ public class fenetre extends JFrame {
         return x;
     }
 
+    public void setX(int y) {
+        this.x=y;
+    }
+
     public boolean verifieMot(String s) {
         boolean b = false;
         if (list.contains(s)) {
@@ -299,5 +322,9 @@ public class fenetre extends JFrame {
         for (Map.Entry<String, Integer> a : map.entrySet()) {
             System.out.println(a.getKey() + "/" + a.getValue());
         }
+    }
+
+    public void nouvRep(){
+        this.reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
     }
 }

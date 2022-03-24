@@ -51,25 +51,28 @@ public class EcouteurEnter implements ActionListener {
             char c = input.charAt(i);
             int value = m.get(String.valueOf(c).toUpperCase());
 
+            Color colo= Color.white;
+
             if (word.equals(input)) {
-                txt[fen.getX() - 1][i].setForeground(Color.green);
                 clavier[value].setForeground(Color.green);
+                colo= Color.green;
             }
 
             else if (word.charAt(i) == input.charAt(i)) {
-                txt[fen.getX() - 1][i].setForeground(Color.green);
                 clavier[value].setForeground(Color.green);
                 b = false;
+                colo= Color.green;
             }
 
             else if (l.contains(input.charAt(i)) && b == true) {
-                txt[fen.getX() - 1][i].setForeground(Color.orange);
                 clavier[value].setForeground(Color.orange);
+                colo=Color.orange;
             } else {
-                txt[fen.getX() - 1][i].setForeground(Color.gray);
+                colo=Color.gray;
                 clavier[value].setForeground(Color.gray);
             }
 
+            setTimeout(txt[fen.getX() - 1][i].setForeground(colo), 1000);
         }
     }
 
