@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
  
-package events;
+//package events;
  
 /*
 * KeyEventDemo
@@ -83,7 +83,7 @@ public class EcouteurClavier extends JFrame
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        KeyEventDemo frame = new KeyEventDemo("KeyEventDemo");
+        EcouteurClavier frame = new EcouteurClavier("Ecouteur Clavier");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
         //Set up the content pane.
@@ -121,7 +121,7 @@ public class EcouteurClavier extends JFrame
         getContentPane().add(button, BorderLayout.PAGE_END);
     }
      
-    public KeyEventDemo(String name) {
+    public EcouteurClavier(String name) {
         super(name);
     }
      
