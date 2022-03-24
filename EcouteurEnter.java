@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.event.*;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.io.*; 
 
 import javax.swing.*;
 
@@ -32,14 +33,14 @@ public class EcouteurEnter implements ActionListener {
             if (fen.getX() == 6) {
                 JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
             } else {
-                containChar(word, input);
+                //containChar(word, input);
                 kelawin(word, input);
             }
 
         }
     }
 
-    public void containChar(String word, String input) {
+    public void containChar(String word, String input) throws InterruptedException {
 
         boolean b = true;
         LinkedList<Character> l = new LinkedList<>();
@@ -56,6 +57,7 @@ public class EcouteurEnter implements ActionListener {
             if (word.equals(input)) {
                 clavier[value].setForeground(Color.green);
                 colo= Color.green;
+                Thread.sleep(250);
                 fen.changeBackground(colo, fen.getX()-1, i);
             }
 
@@ -63,16 +65,19 @@ public class EcouteurEnter implements ActionListener {
                 clavier[value].setForeground(Color.green);
                 b = false;
                 colo= Color.green;
+                Thread.sleep(250);
                 fen.changeBackground(colo, fen.getX()-1, i);
             }
 
             else if (l.contains(input.charAt(i)) && b == true) {
                 clavier[value].setForeground(Color.orange);
                 colo=Color.orange;
+                Thread.sleep(250);
                 fen.changeBackground(colo, fen.getX()-1, i);
             } else {
                 colo=Color.gray;
                 clavier[value].setForeground(Color.gray);
+                Thread.sleep(250);
                 fen.changeBackground(colo, fen.getX()-1, i);
             }
 
