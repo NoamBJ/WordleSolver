@@ -72,7 +72,7 @@ public class EcouteurEnter implements ActionListener {
                 clavier[value].setForeground(Color.gray);
             }
 
-            setTimeout(txt[fen.getX() - 1][i].setForeground(colo), 1000);
+            fen.setTimeout(fen.changeBackground(colo, fen.getX()-1, i), 1000);
         }
     }
 
