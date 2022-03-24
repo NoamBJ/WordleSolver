@@ -18,8 +18,9 @@ public class fenetre extends JFrame {
 
     Texte mots_reponse = new Texte("wordle-guesses.txt");
     String[] tableau_reponse = leTexte.decoupe();
-    String reponse = tableau_reponse[(int) (Math.random() *
-            tableau_reponse.length)];
+
+    //réponse
+    String reponse =tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -37,28 +38,17 @@ public class fenetre extends JFrame {
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
         pHaut.setLayout(new BorderLayout());
-        pHaut.setBackground(Color.WHITE);
+        pHaut.setBackground(Color.BLACK);
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
-        JTextField wordle = new JTextField("Wordle");
-        wordle.setEditable(false);
-        wordle.setBackground(Color.BLACK); //ICI ON PEUT METTRE UNE IMAGE
+        //JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
+        JLabel wordle = new JLabel("Wordle");
+        //wordle.setEditable(false);
+        wordle.setBackground(Color.black);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
-
-        // essaye de rajouter un texte locomotus en plus petit
-        JPanel locom = new JPanel();
-        locom.setLayout(new GridLayout());
-        locom.setBackground(Color.BLACK);
-        JTextField locomotus = new JTextField("by LOCOMOTUS");
-        locomotus.setEditable(false);
-        locomotus.setBackground(Color.black);
-        locomotus.setFont(new Font("Arial", Font.BOLD, 15));
-        locomotus.setForeground(Color.white);
-        locomotus.setBorder(null);
-        locomotus.setHorizontalAlignment(JTextField.CENTER);
-
+		
         help.setBackground(Color.black);
         help.setBorderPainted(false);
         help.setOpaque(false);
@@ -99,12 +89,10 @@ public class fenetre extends JFrame {
 
         // Panel gauche et droite afin de centrer la grille
         JPanel pGauche = new JPanel();
-        JLabel imageGauche = new JLabel(new ImageIcon("image_gauche.png"));
-        pGauche.setBackground(Color.BLACK);
+        pGauche.setBackground(Color.black);
         JPanel pDroit = new JPanel();
         pDroit.setBackground(Color.black);
-		JLabel imageDroite = new JLabel(new ImageIcon("image_droite.png"));
-        
+
         // création du Panel du bas
         JPanel pBas = new JPanel();
         pBas.setLayout(new BorderLayout());
@@ -113,17 +101,20 @@ public class fenetre extends JFrame {
         JPanel ligne1 = new JPanel();
         JPanel ligne2 = new JPanel();
         JPanel ligne3 = new JPanel();
-        pBas.setBackground(Color.white);
+        JPanel ligne4 = new JPanel();
+        pBas.setBackground(Color.black);
         noms.setBackground(Color.black);
         ligne1.setBackground(Color.black);
         ligne2.setBackground(Color.black);
         ligne3.setBackground(Color.black);
+        ligne4.setBackground(Color.black);
         clavier.setBackground(Color.black);
 
         ligne1.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne2.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne3.setPreferredSize(new Dimension(screenSize.width, 50));
-
+        ligne4.setPreferredSize(new Dimension(screenSize.width, 50));
+        
         // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
         // auteurs.setEditable(false);
         // auteurs.setBackground(Color.black);
@@ -219,6 +210,18 @@ public class fenetre extends JFrame {
             ligne3.add(toucheClavier[i]);
         }
 
+        JButton restart = new JButton("RESTART");
+        restart.setBackground(Color.black);
+        restart.setBorderPainted(true);
+        restart.setOpaque(false);
+        restart.setForeground(Color.WHITE);
+        restart.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        restart.setPreferredSize(new Dimension(150, 40));
+        restart.setFocusable(false);
+        restart.addActionListener(new EcouteurRestart(this, txtlettre, toucheClavier));
+        
+        ligne4.add(restart);
+
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
         delete.setBackground(Color.black);
         delete.setBorderPainted(true);
@@ -233,9 +236,8 @@ public class fenetre extends JFrame {
         // ajout des composants
 
         pack();
-		locom.add(locomotus);
+
         pHaut.add(help);
-        pHaut.add(locom, BorderLayout.SOUTH); // il n'affiche pas locomotus... écrasé par le wordle après ?
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
         pHaut.setPreferredSize(new Dimension(1000, 100));
@@ -248,16 +250,15 @@ public class fenetre extends JFrame {
         noms.add(paul);
         noms.add(noam);
         noms.add(clara);
-        noms.add(satine);
+        noms.add(satine);     
         noms.add(moha);
         pBas.add(noms, BorderLayout.NORTH);
         clavier.add(ligne1);
         clavier.add(ligne2);
         clavier.add(ligne3);
+        clavier.add(ligne4);
         // zoneSaisie.add(saisie);
         // zoneSaisie.add(enter);
-        pGauche.add(imageGauche);
-        pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
@@ -268,7 +269,7 @@ public class fenetre extends JFrame {
 
         // testHashmap();
 
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenSize.width, screenSize.height);
         setVisible(true);
@@ -303,6 +304,10 @@ public class fenetre extends JFrame {
         return x;
     }
 
+    public void setX(int y) {
+        this.x=y;
+    }
+
     public boolean verifieMot(String s) {
         boolean b = false;
         if (list.contains(s)) {
@@ -331,4 +336,26 @@ public class fenetre extends JFrame {
         }
     }
 
+    public void nouvRep(){
+        this.reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
+    }
+
+    public static void setTimeout(Runnable runnable, int delay){
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
+    }
+
+    public void changeBackground(Color c, int posi, int posj){
+        txtlettre[posi][posj].setForeground(c);
+    }
+
+    public void setTimeout(Object changeBackground, int delay) {
+    }
 }
