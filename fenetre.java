@@ -42,13 +42,26 @@ public class fenetre extends JFrame {
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
         //JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
         JLabel wordle = new JLabel("Wordle");
-        //wordle.setEditable(false);
-        wordle.setBackground(Color.black);
+        wordle.setFocusable(false);
+        wordle.setBackground(Color.black);// ICI IMAAAAGE
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
 		
+        //ajouter txt locomotus
+
+        JPanel locom = new JPanel();
+        locom.setLayout(new GridLayout());
+        locom.setBackground(Color.BLACK);
+        JTextField locomotus = new JTextField("by LOCOMOTUS");
+        locomotus.setEditable(false);
+        locomotus.setBackground(Color.black);
+        locomotus.setFont(new Font("Arial", Font.BOLD, 15));
+        locomotus.setForeground(Color.white);
+        locomotus.setBorder(null);
+        locomotus.setHorizontalAlignment(JTextField.CENTER);
+
         help.setBackground(Color.black);
         help.setBorderPainted(false);
         help.setOpaque(false);
@@ -89,8 +102,10 @@ public class fenetre extends JFrame {
 
         // Panel gauche et droite afin de centrer la grille
         JPanel pGauche = new JPanel();
+        JLabel imageGauche = new JLabel(new ImageIcon("image_gauche.png"));
         pGauche.setBackground(Color.black);
         JPanel pDroit = new JPanel();
+        JLabel imageDroite = new JLabel(new ImageIcon("image_droite.png"));
         pDroit.setBackground(Color.black);
 
         // création du Panel du bas
@@ -236,8 +251,9 @@ public class fenetre extends JFrame {
         // ajout des composants
 
         pack();
-
+        locom.add(locomotus);
         pHaut.add(help);
+        pHaut.add(locom, BorderLayout.SOUTH);
         pHaut.add(wordle);
         add(pHaut, BorderLayout.NORTH);
         pHaut.setPreferredSize(new Dimension(1000, 100));
@@ -259,6 +275,8 @@ public class fenetre extends JFrame {
         clavier.add(ligne4);
         // zoneSaisie.add(saisie);
         // zoneSaisie.add(enter);
+        pGauche.add(imageGauche);
+        pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
