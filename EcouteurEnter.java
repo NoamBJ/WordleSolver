@@ -56,23 +56,27 @@ public class EcouteurEnter implements ActionListener {
             if (word.equals(input)) {
                 clavier[value].setForeground(Color.green);
                 colo= Color.green;
+                fen.changeBackground(colo, fen.getX()-1, i);
             }
 
             else if (word.charAt(i) == input.charAt(i)) {
                 clavier[value].setForeground(Color.green);
                 b = false;
                 colo= Color.green;
+                fen.changeBackground(colo, fen.getX()-1, i);
             }
 
             else if (l.contains(input.charAt(i)) && b == true) {
                 clavier[value].setForeground(Color.orange);
                 colo=Color.orange;
+                fen.changeBackground(colo, fen.getX()-1, i);
             } else {
                 colo=Color.gray;
                 clavier[value].setForeground(Color.gray);
+                fen.changeBackground(colo, fen.getX()-1, i);
             }
 
-            fen.setTimeout(fen.changeBackground(colo, fen.getX()-1, i), 1000);
+            //fen.setTimeout(fen.changeBackground(colo, fen.getX()-1, i), 1000);
         }
     }
 
