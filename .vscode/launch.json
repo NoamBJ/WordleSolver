@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
             "name": "Launch PatchFromImage",
             "request": "launch",
             "mainClass": "PatchFromImage",
@@ -17,6 +18,12 @@
             "request": "launch",
             "mainClass": "EcouteurClavier",
             "projectName": "WordleSolver_8d550cd"
+=======
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "WordleSolver_3354fa88"
+>>>>>>> e86174978a94218252951856549355a2f0922391
         },
         {
             "type": "java",
