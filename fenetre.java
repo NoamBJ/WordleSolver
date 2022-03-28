@@ -38,12 +38,13 @@ public class fenetre extends JFrame {
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
         pHaut.setLayout(new BorderLayout());
-        pHaut.setBackground(Color.BLACK);
+        pHaut.setBackground(Color.BLACK); //ICI IMAAAAGE
+        JLabel imageHaut = new JLabel(new ImageIcon("image_haut.png"));
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
         //JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
         JLabel wordle = new JLabel("Wordle");
         wordle.setFocusable(false);
-        wordle.setBackground(Color.black);// ICI IMAAAAGE
+        wordle.setBackground(Color.BLUE);
         wordle.setFont(new Font("Arial", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
@@ -252,6 +253,7 @@ public class fenetre extends JFrame {
 
         pack();
         locom.add(locomotus);
+        pHaut.add(imageHaut);
         pHaut.add(help);
         pHaut.add(locom, BorderLayout.SOUTH);
         pHaut.add(wordle);
