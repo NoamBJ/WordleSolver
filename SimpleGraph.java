@@ -78,6 +78,7 @@ class SimpleGraph {
      * \description : retourne une chaîne de caractères décrivant le graphe.
      * \return String: chaîne de caractères
      */
+    @Override
     public String toString() {
         String show = "<graph vertices=\"" + this.vertices + "\">\n";
         for (int i = 0; i < this.vertices; ++i)
@@ -90,4 +91,17 @@ class SimpleGraph {
         return show;
     }
 
+    public static void main(String[] args) {
+        int[][] edges = new int[5][5];
+        String[] names = { "A", "B", "C", "D", "E" };
+        SimpleGraph graph = new SimpleGraph(edges, names);
+        graph.addNeighbor(0, 1);
+        graph.addNeighbor(2, 3);
+        graph.addNeighbor(4, 2);
+        graph.addNeighbor(2, 0);
+        graph.addNeighbor(3, 1);
+        graph.addNeighbor(1, 4);
+
+        System.out.println(graph.toString());
+    }
 }
