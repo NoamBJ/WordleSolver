@@ -25,8 +25,10 @@ public class fenetre extends JFrame {
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
-    public fenetre() {
+    private JTextField clavierArea;
 
+    public fenetre() {
+        
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
@@ -81,9 +83,13 @@ public class fenetre extends JFrame {
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
         
         JPanel textArea = new JPanel();
-        textArea.setBackground(Color.darkGray);
-        JTextField clavierArea = new JTextField(20);
+        textArea.setBackground(Color.BLACK);
+        clavierArea = new JTextField(20);
+        JButton valide = new JButton("Valider mot");
+        valide.addActionListener(new EcouteurClavier(this));
+
         textArea.add(clavierArea);
+        textArea.add(valide);
 
         for (int i = 0; i < txtlettre.length; i++) {
             for (int j = 0; j < txtlettre[i].length; j++) {
@@ -378,4 +384,14 @@ public class fenetre extends JFrame {
 
     public void setTimeout(Object changeBackground, int delay) {
     }
+
+    public void chargerMot(){
+        String nouveauMot = clavierArea.getText();
+        System.out.println(nouveauMot);
+        clavierArea.setText("");
+
+
+    }
+
+
 }
