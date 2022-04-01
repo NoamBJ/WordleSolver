@@ -17,10 +17,10 @@ public class fenetre extends JFrame {
     List<String> list = Arrays.asList(tableauGroupesLettres);
 
     Texte mots_reponse = new Texte("wordle-guesses.txt");
-    String[] tableau_reponse = leTexte.decoupe();
+    String[] tableau_reponse = mots_reponse.decoupe();
 
-    //réponse
-    String reponse =tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
+    // réponse
+    String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -40,10 +40,11 @@ public class fenetre extends JFrame {
         // création du Panel supérieur, ce qu'il y a dedans et ses attributs
         JPanel pHaut = new JPanel();
         pHaut.setLayout(new BorderLayout());
-        pHaut.setBackground(Color.BLACK); //ICI IMAAAAGE
+        pHaut.setBackground(Color.BLACK); // ICI IMAAAAGE
         JLabel imageHaut = new JLabel(new ImageIcon("image_haut.png"));
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
-        //JHyperlink wordle = new JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
+        // JHyperlink wordle = new
+        // JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
         JLabel wordle = new JLabel("Wordle");
         wordle.setFocusable(false);
         wordle.setBackground(Color.BLUE);
@@ -51,8 +52,8 @@ public class fenetre extends JFrame {
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
-		
-        //ajouter txt locomotus
+
+        // ajouter txt locomotus
 
         JPanel locom = new JPanel();
         locom.setLayout(new GridLayout());
@@ -74,14 +75,14 @@ public class fenetre extends JFrame {
 
         // création de la grille au milieu
 
-        JPanel centralCee = new JPanel(); //667 équipe
+        JPanel centralCee = new JPanel(); // 667 équipe
         centralCee.setBackground(Color.BLACK);
         centralCee.setLayout(new BorderLayout());
 
         JPanel p2 = new JPanel();
         p2.setBackground(Color.black);
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
-        
+
         JPanel textArea = new JPanel();
         textArea.setBackground(Color.BLACK);
         clavierArea = new JTextField(20);
@@ -136,7 +137,7 @@ public class fenetre extends JFrame {
         ligne2.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne3.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne4.setPreferredSize(new Dimension(screenSize.width, 50));
-        
+
         // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
         // auteurs.setEditable(false);
         // auteurs.setBackground(Color.black);
@@ -241,7 +242,7 @@ public class fenetre extends JFrame {
         restart.setPreferredSize(new Dimension(150, 40));
         restart.setFocusable(false);
         restart.addActionListener(new EcouteurRestart(this, txtlettre, toucheClavier));
-        
+
         ligne4.add(restart);
 
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
@@ -274,7 +275,7 @@ public class fenetre extends JFrame {
         noms.add(paul);
         noms.add(noam);
         noms.add(clara);
-        noms.add(satine);     
+        noms.add(satine);
         noms.add(moha);
         pBas.add(noms, BorderLayout.NORTH);
         clavier.add(ligne1);
@@ -331,7 +332,7 @@ public class fenetre extends JFrame {
     }
 
     public void setX(int y) {
-        this.x=y;
+        this.x = y;
     }
 
     public boolean verifieMot(String s) {
@@ -362,23 +363,22 @@ public class fenetre extends JFrame {
         }
     }
 
-    public void nouvRep(){
+    public void nouvRep() {
         this.reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
     }
 
-    public static void setTimeout(Runnable runnable, int delay){
+    public static void setTimeout(Runnable runnable, int delay) {
         new Thread(() -> {
             try {
                 Thread.sleep(delay);
                 runnable.run();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e);
             }
         }).start();
     }
 
-    public void changeBackground(Color c, int posi, int posj){
+    public void changeBackground(Color c, int posi, int posj) {
         txtlettre[posi][posj].setForeground(c);
     }
 
