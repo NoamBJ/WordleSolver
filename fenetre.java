@@ -389,7 +389,8 @@ public class fenetre extends JFrame {
         String nouveauMot = clavierArea.getText();
         System.out.println(nouveauMot);
         clavierArea.setText("");
-
+        
+        
 
     }
 
