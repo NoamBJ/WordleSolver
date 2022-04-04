@@ -73,12 +73,12 @@ public class findWord {
         // double valeur = calculMoyenne(possibility, "crane", liste_reponse);
         // System.out.println("valeur moyenne = " + valeur);
 
-        // jouer au jeu avec 4 essais.
+        // jouer au jeu avec 10 essais.
         // .
         // .
         // .
         // String word = "slane";
-        // for (int i = 0; i < 4; i++) {
+        // for (int i = 0; i < 10; i++) {
         // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
         // HashMap<Double, String> map_reponse = new HashMap<>();
         // // System.out.println("mots dans la liste entiere = " + liste_mots.size());
@@ -117,7 +117,7 @@ public class findWord {
         // System.out.println(compareGuess("fuzzy", "zhuzh"));
 
         // reponse , guess
-        // StringBuilder str = compareGuess("rigid", "vigor");
+        // StringBuilder str = compareGuess("shalt", "slane");
         // System.out.println(str);
         // Quintuple q = stringToQuintuple(str);
         // System.out.println(q.printSequence());
@@ -178,6 +178,39 @@ public class findWord {
         long time = finish - start;
         System.out.println("temps ecoule " + time);
         System.out.println("en moyenne je trouve le bon resultat en " + moyenne + " essais");
+
+        // String mot_reponse = "shalt";
+        // String guess = "slane";
+        // ArrayList<String> temp_mots = new ArrayList<>(liste_mots);
+        // ArrayList<String> temp_reponse = new ArrayList<>(liste_reponse);
+        // System.out.println("reponse = " + mot_reponse);
+        // int tour = 1;
+        // while (!mot_reponse.equals(guess)) {
+        // System.out.println("guess = " + guess);
+        // // System.out.println("hey");
+        // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
+        // HashMap<Double, String> map_reponse = new HashMap<>();
+        // temp_mots.remove(guess);
+        // System.out.println(stringToQuintuple(compareGuess(mot_reponse,
+        // guess)).printSequence());
+        // temp_reponse = retireMot(stringToQuintuple(compareGuess(mot_reponse, guess)),
+        // guess, temp_reponse);
+        // // for (String s : temp_reponse) {
+        // // System.out.print(s + " ");
+        // // }
+        // // System.out.println(temp_reponse.size());
+
+        // for (int j = 0; j < temp_mots.size(); j++) {
+        // double valeur = calculMoyenne(possibility, temp_mots.get(j), temp_reponse);
+        // valeur_moyenne_mots.add(valeur);
+        // map_reponse.put(valeur, temp_mots.get(j));
+        // }
+
+        // Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
+        // guess = map_reponse.get(valeur_moyenne_mots.get(0));
+        // tour++;
+        // }
+        // System.out.println("essais = " + tour);
     }
 
     // calcul moyenne
