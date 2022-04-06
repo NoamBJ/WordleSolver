@@ -12,8 +12,23 @@ public class EcouteurClavier implements ActionListener{
 	}
 	
     public void actionPerformed(ActionEvent ae){
-		fen.chargerMot();
-		//fen.affichePresents();
+		String motEntre = fen.chargerMot();
+    ArrayList <String> lettres = new ArrayList<String>();
+		if(motEntre.length() == 5){
+      if(fen.verifieMot(motEntre)){
+        for( int i = 0; i<motEntre.length(); i++){
+          String l = Character.toString(motEntre.charAt(i));
+          lettres.add(l);
+          EcouteurLettre ec = new EcouteurLettre(fen, l, fen.tabButtons(), fen.getX());
+          ec.effectuer();
+        }
+
+
+
+      }
+
+    }
+
     }
     
     

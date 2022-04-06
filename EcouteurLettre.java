@@ -30,4 +30,18 @@ public class EcouteurLettre implements ActionListener {
         }
 
     }
+
+    public void effectuer() {
+        int y = fen.caseVide();
+        try {
+            if (y < txt[x].length) {
+                txt[fen.getX()][fen.caseVide()].setText(lettre);
+                txt[fen.getX()][fen.caseVide()].setForeground(Color.white);
+                txt[fen.getX()][fen.caseVide()].setFont(new Font("Arial", Font.BOLD, 42));
+            }
+        } catch (Exception ex) {
+
+        }
+
+    }
 }

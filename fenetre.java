@@ -385,14 +385,15 @@ public class fenetre extends JFrame {
     public void setTimeout(Object changeBackground, int delay) {
     }
 
-    public void chargerMot(){
+    public String chargerMot(){
         String nouveauMot = clavierArea.getText();
         System.out.println(nouveauMot);
         clavierArea.setText("");
+        return nouveauMot;
         
-        
-
     }
 
-
+    public JButton[][] tabButtons(){
+        return this.txtlettre;
+    }
 }
