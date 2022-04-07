@@ -10,18 +10,19 @@ public class EcouteurRestart implements ActionListener {
 
     public EcouteurRestart(fenetre fen, JButton[][] txt, JButton[] clavier) {
         this.fen = fen;
-        this.txt =txt;
-        this.clavier=clavier;
+        this.txt = txt;
+        this.clavier = clavier;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for(int i=0; i<txt.length; i++){
-            for(int j=0; j<txt[0].length; j++){
+        for (int i = 0; i < txt.length; i++) {
+            for (int j = 0; j < txt[i].length; j++) {
                 txt[i][j].setText("");
+                txt[i][j].setForeground(Color.white);
             }
         }
-        for (int i = 0 ; i < 26; i++){
+        for (int i = 0; i < 26; i++) {
             clavier[i].setForeground(Color.white);
         }
         fen.setX(0);
