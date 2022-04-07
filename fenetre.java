@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import javax.swing.*;
 import java.util.List;
@@ -20,15 +22,59 @@ public class fenetre extends JFrame {
     String[] tableau_reponse = mots_reponse.decoupe();
 
     // réponse
-    String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
+    // String reponse = tableau_reponse[(int) (Math.random() *
+    // tableau_reponse.length)];
+    String reponse = "horse";
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
     private JTextField clavierArea;
 
-    public fenetre() {
-        
+    findWord robot;
+
+    public fenetre() throws FileNotFoundException {
+
+        File file1 = new File("wordListOrdered.txt");
+        File file2 = new File("wordle-guesses.txt");
+        File file3 = new File("permutations.txt");
+
+        Scanner in1 = new Scanner(file1);
+        Scanner in2 = new Scanner(file2);
+        Scanner in3 = new Scanner(file3);
+
+        ArrayList<String> liste_mots = new ArrayList<String>();
+        ArrayList<String> liste_reponse = new ArrayList<String>();
+        ArrayList<String> perm = new ArrayList<String>();
+        while (in1.hasNext()) {
+            liste_mots.add(in1.next());
+        }
+
+        while (in2.hasNext()) {
+            liste_reponse.add(in2.next());
+        }
+
+        while (in3.hasNext()) {
+            perm.add(in3.next());
+        }
+        in1.close();
+        in2.close();
+        in3.close();
+
+        String[] permutations = perm.toArray(new String[perm.size()]);
+
+        // création d'un tableau de quintuple avec toutes les combinaisons possibles
+
+        Quintuple[] possibility = new Quintuple[permutations.length];
+
+        for (int i = 0; i < possibility.length; i++) {
+            int j = 0;
+            possibility[i] = new Quintuple(permutations[i].charAt(j), permutations[i].charAt(j + 1),
+                    permutations[i].charAt(j + 2), permutations[i].charAt(j + 3), permutations[i].charAt(j + 4));
+        }
+
+        robot = new findWord(liste_mots, liste_reponse, possibility);
+
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
@@ -385,15 +431,15 @@ public class fenetre extends JFrame {
     public void setTimeout(Object changeBackground, int delay) {
     }
 
-    public String chargerMot(){
+    public String chargerMot() {
         String nouveauMot = clavierArea.getText();
         System.out.println(nouveauMot);
         clavierArea.setText("");
         return nouveauMot;
-        
+
     }
 
-    public JButton[][] tabButtons(){
+    public JButton[][] tabButtons() {
         return this.txtlettre;
     }
 }

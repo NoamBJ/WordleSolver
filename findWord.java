@@ -6,6 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class findWord {
+    private ArrayList<String> liste_mots;
+    private ArrayList<String> liste_reponse;
+    private Quintuple[] possibility;
+
+    public findWord(ArrayList<String> liste_mots, ArrayList<String> liste_reponse, Quintuple[] possibility) {
+        this.liste_mots = liste_mots;
+        this.liste_reponse = liste_reponse;
+        this.possibility = possibility;
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         final int nb_mots = 12972;
@@ -17,7 +26,6 @@ public class findWord {
         Scanner in1 = new Scanner(file1);
         Scanner in2 = new Scanner(file2);
         Scanner in3 = new Scanner(file3);
-        Scanner read_quintuple = new Scanner(System.in);
 
         ArrayList<String> liste_mots = new ArrayList<String>();
         ArrayList<String> liste_reponse = new ArrayList<String>();
@@ -48,6 +56,9 @@ public class findWord {
             possibility[i] = new Quintuple(permutations[i].charAt(j), permutations[i].charAt(j + 1),
                     permutations[i].charAt(j + 2), permutations[i].charAt(j + 3), permutations[i].charAt(j + 4));
         }
+        findWord robot = new findWord(liste_mots, liste_reponse, possibility);
+        robot.joue();
+
         // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
         // HashMap<Double, String> map_reponse = new HashMap<>();
 
@@ -77,39 +88,6 @@ public class findWord {
         // .
         // .
         // .
-        // String word = "slane";
-        // for (int i = 0; i < 10; i++) {
-        // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
-        // HashMap<Double, String> map_reponse = new HashMap<>();
-        // // System.out.println("mots dans la liste entiere = " + liste_mots.size());
-        // System.out.println("entrez votre quintuple : ");
-        // String input = read_quintuple.nextLine();
-        // Quintuple quintuple_rep = new Quintuple(input.charAt(0), input.charAt(1),
-        // input.charAt(2), input.charAt(3),
-        // input.charAt(4));
-        // long start = System.currentTimeMillis();
-        // liste_mots.remove(word);
-        // liste_reponse = retireMot(quintuple_rep, word, liste_reponse);
-        // for (int j = 0; j < liste_mots.size(); j++) {
-        // double valeur = calculMoyenne(possibility, liste_mots.get(j), liste_reponse);
-        // valeur_moyenne_mots.add(valeur);
-        // map_reponse.put(valeur, liste_mots.get(j));
-        // }
-        // for (String s : liste_reponse) {
-        // System.out.print(s + " ");
-        // }
-
-        // Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
-
-        // long finish = System.currentTimeMillis();
-        // long time = finish - start;
-        // System.out.println("\n temps ecoule " + time);
-        // System.out.println("la liste de mot réponse fait mainteant " +
-        // liste_reponse.size() + " mots");
-        // System.out.println("valeur moyenne = " + valeur_moyenne_mots.get(0));
-        // word = map_reponse.get(valeur_moyenne_mots.get(0));
-        // System.out.println("meilleur mot = " + word);
-        // }
 
         // StringBuilder mot = new StringBuilder("20010");
         // System.out.println(stringToQuintuple(mot).printSequence());
@@ -131,53 +109,54 @@ public class findWord {
         // System.out.println(calculMoyenne(possibility, "salet", liste_reponse));
         // System.out.println(calculMoyenne(possibility, "crane", liste_reponse));
 
-        double moyenne = 0;
-        int compteur = 1;
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) {
-            int tour = 1;
-            System.out.println(compteur);
-            compteur++;
-            int indice_aleatoire = (int) (Math.random() * liste_reponse.size());
-            String mot_reponse = liste_reponse.get(indice_aleatoire);
-            String guess = "slane";
-            ArrayList<String> temp_mots = new ArrayList<>(liste_mots);
-            ArrayList<String> temp_reponse = new ArrayList<>(liste_reponse);
-            System.out.println("reponse = " + mot_reponse);
-            while (!mot_reponse.equals(guess)) {
-                System.out.println("guess = " + guess);
-                // System.out.println("hey");
-                ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
-                HashMap<Double, String> map_reponse = new HashMap<>();
-                temp_mots.remove(guess);
-                // System.out.println(stringToQuintuple(compareGuess(mot_reponse,
-                // guess)).printSequence());
-                temp_reponse = retireMot(stringToQuintuple(compareGuess(mot_reponse, guess)),
-                        guess, temp_reponse);
-                // for (String s : temp_reponse) {
-                // System.out.print(s + " ");
-                // }
-                // System.out.println(temp_reponse.size());
+        // double moyenne = 0;
+        // int compteur = 1;
+        // long start = System.currentTimeMillis();
+        // for (int i = 0; i < 100; i++) {
+        // int tour = 1;
+        // System.out.println(compteur);
+        // compteur++;
+        // int indice_aleatoire = (int) (Math.random() * liste_reponse.size());
+        // String mot_reponse = liste_reponse.get(indice_aleatoire);
+        // String guess = "slane";
+        // ArrayList<String> temp_mots = new ArrayList<>(liste_mots);
+        // ArrayList<String> temp_reponse = new ArrayList<>(liste_reponse);
+        // System.out.println("reponse = " + mot_reponse);
+        // while (!mot_reponse.equals(guess)) {
+        // System.out.println("guess = " + guess);
+        // // System.out.println("hey");
+        // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
+        // HashMap<Double, String> map_reponse = new HashMap<>();
+        // temp_mots.remove(guess);
+        // // System.out.println(stringToQuintuple(compareGuess(mot_reponse,
+        // // guess)).printSequence());
+        // temp_reponse = retireMot(stringToQuintuple(compareGuess(mot_reponse, guess)),
+        // guess, temp_reponse);
+        // // for (String s : temp_reponse) {
+        // // System.out.print(s + " ");
+        // // }
+        // // System.out.println(temp_reponse.size());
 
-                for (int j = 0; j < temp_mots.size(); j++) {
-                    double valeur = calculMoyenne(possibility, temp_mots.get(j), temp_reponse);
-                    valeur_moyenne_mots.add(valeur);
-                    map_reponse.put(valeur, temp_mots.get(j));
-                }
-                // System.out.println("YO FIANL");
-                Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
-                guess = map_reponse.get(valeur_moyenne_mots.get(0));
-                tour++;
-            }
-            // System.out.println("reponse = " + mot_reponse);
-            // System.out.println("guess = " + guess);
-            moyenne += tour;
-        }
-        moyenne /= 100;
-        long finish = System.currentTimeMillis();
-        long time = finish - start;
-        System.out.println("temps ecoule " + time);
-        System.out.println("en moyenne je trouve le bon resultat en " + moyenne + " essais");
+        // for (int j = 0; j < temp_mots.size(); j++) {
+        // double valeur = calculMoyenne(possibility, temp_mots.get(j), temp_reponse);
+        // valeur_moyenne_mots.add(valeur);
+        // map_reponse.put(valeur, temp_mots.get(j));
+        // }
+        // // System.out.println("YO FIANL");
+        // Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
+        // guess = map_reponse.get(valeur_moyenne_mots.get(0));
+        // tour++;
+        // }
+        // // System.out.println("reponse = " + mot_reponse);
+        // // System.out.println("guess = " + guess);
+        // moyenne += tour;
+        // }
+        // moyenne /= 100;
+        // long finish = System.currentTimeMillis();
+        // long time = finish - start;
+        // System.out.println("temps ecoule " + time);
+        // System.out.println("en moyenne je trouve le bon resultat en " + moyenne + "
+        // essais");
 
         // String mot_reponse = "shalt";
         // String guess = "slane";
@@ -732,5 +711,44 @@ public class findWord {
         }
         // System.out.println(char_in_word);
         return str;
+    }
+
+    // joue pour trouver un mot avec le quintuple donné par l'utilisateur
+    public void joue() {
+        Scanner read_quintuple = new Scanner(System.in);
+
+        String word = "slane";
+        for (int i = 0; i < 10; i++) {
+            ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
+            HashMap<Double, String> map_reponse = new HashMap<>();
+            // System.out.println("mots dans la liste entiere = " + liste_mots.size());
+            System.out.println("entrez votre quintuple : ");
+            String input = read_quintuple.nextLine();
+            Quintuple quintuple_rep = new Quintuple(input.charAt(0), input.charAt(1),
+                    input.charAt(2), input.charAt(3),
+                    input.charAt(4));
+            long start = System.currentTimeMillis();
+            this.liste_mots.remove(word);
+            this.liste_reponse = retireMot(quintuple_rep, word, this.liste_reponse);
+            for (int j = 0; j < this.liste_mots.size(); j++) {
+                double valeur = calculMoyenne(this.possibility, this.liste_mots.get(j), this.liste_reponse);
+                valeur_moyenne_mots.add(valeur);
+                map_reponse.put(valeur, this.liste_mots.get(j));
+            }
+            for (String s : this.liste_reponse) {
+                System.out.print(s + " ");
+            }
+
+            Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
+
+            long finish = System.currentTimeMillis();
+            long time = finish - start;
+            System.out.println("\n temps ecoule " + time);
+            System.out.println("la liste de mot réponse fait mainteant " +
+                    this.liste_reponse.size() + " mots");
+            System.out.println("valeur moyenne = " + valeur_moyenne_mots.get(0));
+            word = map_reponse.get(valeur_moyenne_mots.get(0));
+            System.out.println("meilleur mot = " + word);
+        }
     }
 }
