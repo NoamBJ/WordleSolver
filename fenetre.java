@@ -337,6 +337,7 @@ public class fenetre extends JFrame {
 
     public boolean verifieMot(String s) {
         boolean b = false;
+        s.toLowerCase();
         if (list.contains(s)) {
             b = true;
         } else {
@@ -387,6 +388,7 @@ public class fenetre extends JFrame {
 
     public String chargerMot(){
         String nouveauMot = clavierArea.getText();
+        nouveauMot = nouveauMot.toLowerCase();
         System.out.println(nouveauMot);
         clavierArea.setText("");
         return nouveauMot;
