@@ -22,9 +22,6 @@ public class EcouteurClavier implements ActionListener{
           EcouteurLettre ec = new EcouteurLettre(fen, l, fen.tabButtons(), fen.getX());
           ec.effectuer();
         }
-
-
-
       }
 
     }
