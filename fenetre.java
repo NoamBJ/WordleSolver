@@ -1,3 +1,5 @@
+import static java.awt.Color.CYAN;
+
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -75,6 +77,8 @@ public class fenetre extends JFrame {
 
         robot = new findWord(liste_mots, liste_reponse, possibility);
 
+        Color couleurBoutonVal = new Color(0, 71, 148, 200);
+
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
@@ -133,6 +137,13 @@ public class fenetre extends JFrame {
         textArea.setBackground(Color.BLACK);
         clavierArea = new JTextField(20);
         JButton valide = new JButton("Valider mot");
+        valide.setBorderPainted(true);
+        valide.setOpaque(true);
+        valide.setForeground(Color.WHITE);
+        valide.setBackground(couleurBoutonVal);
+        valide.setPreferredSize(new Dimension(90, 40));
+        valide.setFocusable(false);
+        valide.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         valide.addActionListener(new EcouteurClavier(this));
 
         textArea.add(clavierArea);
@@ -143,9 +154,9 @@ public class fenetre extends JFrame {
                 txtlettre[i][j] = new JButton();
                 // txtlettre[i][j].setEnabled(false); marche pas avec false
                 txtlettre[i][j].setForeground(Color.white);
-                txtlettre[i][j].setBackground(Color.black);
+                txtlettre[i][j].setBackground(Color.BLACK);
                 txtlettre[i][j].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-                txtlettre[i][j].setOpaque(false);
+                txtlettre[i][j].setOpaque(true);
                 txtlettre[i][j].setFont(new Font("Arial", Font.BOLD, 42));
                 txtlettre[i][j].setFocusable(false);
 
@@ -252,12 +263,12 @@ public class fenetre extends JFrame {
 
         JButton enter = new JButton("ENTER");
         enter.setBorderPainted(true);
-        enter.setOpaque(false);
+        enter.setOpaque(true);
         enter.setForeground(Color.WHITE);
-        enter.setBackground(Color.black);
+        enter.setBackground(couleurBoutonVal);
         enter.setPreferredSize(new Dimension(60, 40));
         enter.setFocusable(false);
-        enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map));
 
         ligne3.add(enter);
@@ -280,11 +291,11 @@ public class fenetre extends JFrame {
         }
 
         JButton restart = new JButton("RESTART");
-        restart.setBackground(Color.black);
+        restart.setBackground(new Color(94, 17, 20, 150));
         restart.setBorderPainted(true);
-        restart.setOpaque(false);
+        restart.setOpaque(true);
         restart.setForeground(Color.WHITE);
-        restart.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+        restart.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         restart.setPreferredSize(new Dimension(150, 40));
         restart.setFocusable(false);
         restart.addActionListener(new EcouteurRestart(this, txtlettre, toucheClavier));
@@ -292,11 +303,12 @@ public class fenetre extends JFrame {
         ligne4.add(restart);
 
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
-        delete.setBackground(Color.black);
-        delete.setBorderPainted(true);
-        delete.setOpaque(false);
-        delete.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
         delete.setPreferredSize(new Dimension(60, 40));
+        delete.setOpaque(true);
+        delete.setBackground(new Color(44, 79, 99, 39));
+        delete.setForeground(new Color(44, 79, 99, 39));
+        delete.setBorderPainted(true);
+        delete.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         delete.setFocusable(false);
         delete.addActionListener(new EcouteurDelete(this, txtlettre, x));
         delete.setContentAreaFilled(false);
@@ -383,6 +395,7 @@ public class fenetre extends JFrame {
 
     public boolean verifieMot(String s) {
         boolean b = false;
+        s.toLowerCase();
         if (list.contains(s)) {
             b = true;
         } else {
@@ -433,6 +446,7 @@ public class fenetre extends JFrame {
 
     public String chargerMot() {
         String nouveauMot = clavierArea.getText();
+        nouveauMot = nouveauMot.toLowerCase();
         System.out.println(nouveauMot);
         clavierArea.setText("");
         return nouveauMot;
