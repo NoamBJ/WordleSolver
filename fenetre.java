@@ -52,7 +52,7 @@ public class fenetre extends JFrame {
         JLabel wordle = new JLabel("Wordle");
         wordle.setFocusable(false);
         wordle.setBackground(Color.BLUE);
-        wordle.setFont(new Font("Arial", Font.BOLD, 36));
+        wordle.setFont(new Font("Montserrat", Font.BOLD, 36));
         wordle.setForeground(Color.white);
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
@@ -65,7 +65,7 @@ public class fenetre extends JFrame {
         JTextField locomotus = new JTextField("by LOCOMOTUS");
         locomotus.setEditable(false);
         locomotus.setBackground(Color.black);
-        locomotus.setFont(new Font("Arial", Font.BOLD, 15));
+        locomotus.setFont(new Font("Montserrat", Font.BOLD , 15));
         locomotus.setForeground(Color.white);
         locomotus.setBorder(null);
         locomotus.setHorizontalAlignment(JTextField.CENTER);
@@ -89,7 +89,14 @@ public class fenetre extends JFrame {
 
         JPanel textArea = new JPanel();
         textArea.setBackground(Color.BLACK);
+        
         clavierArea = new JTextField(20);
+        clavierArea.setBackground(Color.DARK_GRAY);
+        clavierArea.setForeground(Color.WHITE);
+        clavierArea.setFont(new Font("Montserrat", Font.ITALIC, 12));
+        clavierArea.setPreferredSize(new Dimension(50, 25));
+        clavierArea.setBorder(BorderFactory.createLineBorder(new Color(170, 65, 88, 150), 3));
+
         JButton valide = new JButton("Valider mot");
         valide.setBorderPainted(true);
         valide.setOpaque(true);
@@ -259,8 +266,6 @@ public class fenetre extends JFrame {
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
         delete.setPreferredSize(new Dimension(60, 40));
         delete.setOpaque(true);
-        delete.setBackground(new Color(44, 79, 99, 39));
-        delete.setForeground(new Color(44, 79, 99, 39));
         delete.setBorderPainted(true);
         delete.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         delete.setFocusable(false);
