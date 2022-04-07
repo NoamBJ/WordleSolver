@@ -1,8 +1,6 @@
 import static java.awt.Color.CYAN;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 import javax.swing.*;
 import java.util.List;
@@ -24,61 +22,17 @@ public class fenetre extends JFrame {
     String[] tableau_reponse = mots_reponse.decoupe();
 
     // réponse
-    // String reponse = tableau_reponse[(int) (Math.random() *
-    // tableau_reponse.length)];
-    String reponse = "horse";
+    String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
     private JTextField clavierArea;
 
-    findWord robot;
+    Color couleurBoutonVal = new Color(0, 71, 148, 200);
 
-    public fenetre() throws FileNotFoundException {
-
-        File file1 = new File("wordListOrdered.txt");
-        File file2 = new File("wordle-guesses.txt");
-        File file3 = new File("permutations.txt");
-
-        Scanner in1 = new Scanner(file1);
-        Scanner in2 = new Scanner(file2);
-        Scanner in3 = new Scanner(file3);
-
-        ArrayList<String> liste_mots = new ArrayList<String>();
-        ArrayList<String> liste_reponse = new ArrayList<String>();
-        ArrayList<String> perm = new ArrayList<String>();
-        while (in1.hasNext()) {
-            liste_mots.add(in1.next());
-        }
-
-        while (in2.hasNext()) {
-            liste_reponse.add(in2.next());
-        }
-
-        while (in3.hasNext()) {
-            perm.add(in3.next());
-        }
-        in1.close();
-        in2.close();
-        in3.close();
-
-        String[] permutations = perm.toArray(new String[perm.size()]);
-
-        // création d'un tableau de quintuple avec toutes les combinaisons possibles
-
-        Quintuple[] possibility = new Quintuple[permutations.length];
-
-        for (int i = 0; i < possibility.length; i++) {
-            int j = 0;
-            possibility[i] = new Quintuple(permutations[i].charAt(j), permutations[i].charAt(j + 1),
-                    permutations[i].charAt(j + 2), permutations[i].charAt(j + 3), permutations[i].charAt(j + 4));
-        }
-
-        robot = new findWord(liste_mots, liste_reponse, possibility);
-
-        Color couleurBoutonVal = new Color(0, 71, 148, 200);
-
+    public fenetre() {
+        
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
@@ -95,7 +49,7 @@ public class fenetre extends JFrame {
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
         // JHyperlink wordle = new
         // JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
-        JLabel wordle = new JLabel("Wordle");
+        JLabel wordle = new JLabel("WORDLE");
         wordle.setFocusable(false);
         wordle.setBackground(Color.BLUE);
         wordle.setFont(new Font("Montserrat", Font.BOLD, 36));
@@ -141,7 +95,7 @@ public class fenetre extends JFrame {
         clavierArea.setForeground(Color.WHITE);
         clavierArea.setFont(new Font("Montserrat", Font.ITALIC, 12));
         clavierArea.setPreferredSize(new Dimension(50, 25));
-        clavierArea.setBorder(BorderFactory.createLineBorder(new Color(170, 65, 88, 150), 3));
+        clavierArea.setBorder(BorderFactory.createLineBorder(Color.WHITE , 1));
 
         JButton valide = new JButton("Valider mot");
         valide.setBorderPainted(true);
@@ -150,7 +104,7 @@ public class fenetre extends JFrame {
         valide.setBackground(couleurBoutonVal);
         valide.setPreferredSize(new Dimension(90, 40));
         valide.setFocusable(false);
-        valide.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
+        valide.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         valide.addActionListener(new EcouteurClavier(this));
 
         textArea.add(clavierArea);
@@ -449,16 +403,24 @@ public class fenetre extends JFrame {
     public void setTimeout(Object changeBackground, int delay) {
     }
 
-    public String chargerMot() {
+    public String chargerMot(){
         String nouveauMot = clavierArea.getText();
         nouveauMot = nouveauMot.toLowerCase();
         System.out.println(nouveauMot);
         clavierArea.setText("");
         return nouveauMot;
-
+        
     }
 
-    public JButton[][] tabButtons() {
+    public JButton[][] tabButtons(){
         return this.txtlettre;
+    }
+
+    public JButton[] getClavier(){
+        return this.toucheClavier;
+    }
+
+    public HashMap<String, Integer> getlaHmap(){
+        return this.map;
     }
 }

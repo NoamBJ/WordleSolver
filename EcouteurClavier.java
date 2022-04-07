@@ -2,6 +2,8 @@ import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter; 
 
 public class EcouteurClavier implements ActionListener{
     //actionPerformed indique les instructions a executer au clic du bouton
@@ -24,6 +26,12 @@ public class EcouteurClavier implements ActionListener{
           EcouteurLettre ec = new EcouteurLettre(fen, l, fen.tabButtons(), fen.getX());
           ec.effectuer();
         }
+        //long millis = System.currentTimeMillis();
+        //while(System.currentTimeMillis()< (millis+1000)){
+          //wait
+        //}
+        EcouteurEnter ecE = new EcouteurEnter(fen, fen.tabButtons(), fen.getClavier() , fen.getlaHmap());
+          ecE.execute();;  
       }
 
     }

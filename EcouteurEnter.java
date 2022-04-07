@@ -43,6 +43,27 @@ public class EcouteurEnter implements ActionListener {
 		}
 	}
 
+	public void execute() {
+		String input = fen.getMot();
+		String word = fen.getReponse();
+		System.out.println(word);
+
+		if (fen.verifieMot(input)) {
+
+			fen.changementLigne();
+			if (fen.getX() == 6) {
+				JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
+			} else if (kelawin(word, input)) {
+				kelawin(word, input);
+			} else {
+				vert(word, input);
+				containChar(word, input);
+
+			}
+			// fen.robot.joue();
+		}
+	}
+
 	public void vert(String word, String input) {
 		ArrayList<Character> l = new ArrayList<>();
 		ArrayList<Character> in = new ArrayList<>();
