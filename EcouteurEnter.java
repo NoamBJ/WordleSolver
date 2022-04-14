@@ -30,16 +30,17 @@ public class EcouteurEnter implements ActionListener {
 		if (fen.verifieMot(input)) {
 
 			fen.changementLigne();
-			if (fen.getX() == 6) {
+			if (fen.getX() == 6 && !kelawin(word, input)) {
 				JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
 			} else if (kelawin(word, input)) {
 				kelawin(word, input);
 			} else {
 				vert(word, input);
 				containChar(word, input);
-
+				quintuple();
+				System.out.println(quintuple());
 			}
-			// fen.robot.joue();
+
 		}
 	}
 
@@ -116,6 +117,7 @@ public class EcouteurEnter implements ActionListener {
 			int value = m.get(String.valueOf(c).toUpperCase());
 
 			System.out.println(" lettre avant orange " + i + "   " + l.get(i));
+			System.out.println(clavier[value].getForeground());
 
 			if (l.contains(in.get(i)) && txt[fen.getX() - 1][i].getForeground() != Color.green) {
 
@@ -126,8 +128,6 @@ public class EcouteurEnter implements ActionListener {
 				// System.out.println(in.get(i)+" "+ +i);
 				l.set(l.indexOf(in.get(i)), null);
 				System.out.println("lettre après orange " + i + "   " + l.get(i));
-
-				// orange(word, input);
 
 			} else if (l.get(i) == null && txt[fen.getX() - 1][i].getForeground() == Color.green
 					&& clavier[value].getForeground() == Color.green) {
@@ -148,71 +148,21 @@ public class EcouteurEnter implements ActionListener {
 		}
 	}
 
-	public void orange(String word, String input) {
-		LinkedList<Character> w = new LinkedList<>();
-		LinkedList<Character> in = new LinkedList<>();
-
-		int lettreachanger = 0;
-
-		for (int i = 0; i < word.length(); i++) {
-			w.add(word.charAt(i));
-			in.add(input.charAt(i));
-		}
-
-		for (char n : w) {
-			for (char c : in) {
-
-				if (w.contains(c)) {
-					int value = m.get(String.valueOf(c).toUpperCase());
-					int index = in.indexOf(c);
-					txt[fen.getX() - 1][index].setForeground(Color.orange);
-					clavier[value].setForeground(Color.orange);
-					in.set(index, null);
-					// lettreachanger++;
-					// System.out.println(" lettre a changer = "+lettreachanger);
-				}
-
-				/*
-				 * nt value = m.get(String.valueOf(c).toUpperCase());
-				 * System.out.println(input.charAt(c) + " boucle  2 tour "+ j);
-				 * if( n == c && lettreachanger >0 ){ //&& lettreorange < lettreachanger
-				 * txt[fen.getX() - 1][j].setForeground(Color.orange);
-				 * clavier[value].setForeground(Color.orange);
-				 * lettreachanger--;
-				 * System.out.println("lettre orange tour 2 =" +lettreachanger);
-				 * 
-				 * }
-				 */
+	public StringBuilder quintuple() {
+		StringBuilder s = new StringBuilder("00000");
+		for (int i = 0; i < 5; i++) {
+			if (txt[fen.getX() - 1][i].getForeground() == Color.green) {
+				s.setCharAt(i, '2');
 			}
-		}
-	}
 
-	/*
-	 * for (int i = 0; i<word.length(); i++){// compter combien de fois la lettre
-	 * est présente
-	 * 
-	 * System.out.println( word.charAt(i) + "boucle 1 TOUR "+ i);
-	 * if (l.contains(input.charAt(i))){
-	 * lettreachanger++;
-	 * System.out.println(" lettre a changer = "+lettreachanger);
-	 * }
-	 * 
-	 * 
-	 * for (int j = 0; j < input.length(); j++) {
-	 * 
-	 * char c = input.charAt(i);
-	 * int value = m.get(String.valueOf(c).toUpperCase());
-	 * System.out.println(input.charAt(j) + " boucle  2 tour "+ j);
-	 * if( word.charAt(i) == input.charAt(j) && lettreachanger >0 ){ //&&
-	 * lettreorange < lettreachanger
-	 * txt[fen.getX() - 1][j].setForeground(Color.orange);
-	 * clavier[value].setForeground(Color.orange);
-	 * lettreachanger--;
-	 * System.out.println("lettre orange tour 2 =" +lettreachanger);
-	 * 
-	 * }
-	 * }
-	 */
+			else if (txt[fen.getX() - 1][i].getForeground() == Color.orange) {
+
+				s.setCharAt(i, '1');
+			}
+
+		}
+		return s;
+	}
 
 	public boolean kelawin(String word, String input) {
 		boolean gagner = false;
