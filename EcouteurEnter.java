@@ -40,6 +40,10 @@ public class EcouteurEnter implements ActionListener {
 				quintuple();
 				System.out.println(quintuple());
 			}
+			Quintuple q = stringToQuintuple(quintuple());
+			if (!kelawin(word, input)) {
+				fen.robot.joue(q, input);
+			}
 
 		}
 	}
@@ -61,7 +65,6 @@ public class EcouteurEnter implements ActionListener {
 				containChar(word, input);
 
 			}
-			// fen.robot.joue();
 		}
 	}
 
@@ -105,7 +108,7 @@ public class EcouteurEnter implements ActionListener {
 			if (txt[fen.getX() - 1][j].getForeground() == Color.green) {
 				char c = input.charAt(j);
 				int value = m.get(String.valueOf(c).toUpperCase());
-				System.out.println("est vert " + l.get(j));
+				// System.out.println("est vert " + l.get(j));
 				l.set(j, null);
 				txt[fen.getX() - 1][j].setForeground(Color.green);
 				clavier[value].setForeground(Color.green);
@@ -116,7 +119,7 @@ public class EcouteurEnter implements ActionListener {
 			char c = input.charAt(i);
 			int value = m.get(String.valueOf(c).toUpperCase());
 
-			System.out.println(" lettre avant orange " + i + "   " + l.get(i));
+			// System.out.println(" lettre avant orange " + i + " " + l.get(i));
 			System.out.println(clavier[value].getForeground());
 
 			if (l.contains(in.get(i)) && txt[fen.getX() - 1][i].getForeground() != Color.green) {
@@ -127,7 +130,7 @@ public class EcouteurEnter implements ActionListener {
 				clavier[value].setForeground(Color.orange);
 				// System.out.println(in.get(i)+" "+ +i);
 				l.set(l.indexOf(in.get(i)), null);
-				System.out.println("lettre après orange " + i + "   " + l.get(i));
+				// System.out.println("lettre après orange " + i + " " + l.get(i));
 
 			} else if (l.get(i) == null && txt[fen.getX() - 1][i].getForeground() == Color.green
 					&& clavier[value].getForeground() == Color.green) {
@@ -148,22 +151,6 @@ public class EcouteurEnter implements ActionListener {
 		}
 	}
 
-	public StringBuilder quintuple() {
-		StringBuilder s = new StringBuilder("00000");
-		for (int i = 0; i < 5; i++) {
-			if (txt[fen.getX() - 1][i].getForeground() == Color.green) {
-				s.setCharAt(i, '2');
-			}
-
-			else if (txt[fen.getX() - 1][i].getForeground() == Color.orange) {
-
-				s.setCharAt(i, '1');
-			}
-
-		}
-		return s;
-	}
-
 	public boolean kelawin(String word, String input) {
 		boolean gagner = false;
 		if (word.equals(input)) {
@@ -180,6 +167,28 @@ public class EcouteurEnter implements ActionListener {
 
 		}
 		return gagner;
+	}
+
+	// BOT
+
+	public StringBuilder quintuple() {
+		StringBuilder s = new StringBuilder("00000");
+		for (int i = 0; i < 5; i++) {
+			if (txt[fen.getX() - 1][i].getForeground() == Color.green) {
+				s.setCharAt(i, '2');
+			}
+
+			else if (txt[fen.getX() - 1][i].getForeground() == Color.orange) {
+
+				s.setCharAt(i, '1');
+			}
+
+		}
+		return s;
+	}
+
+	public Quintuple stringToQuintuple(StringBuilder mot) {
+		return new Quintuple(mot.charAt(0), mot.charAt(1), mot.charAt(2), mot.charAt(3), mot.charAt(4));
 	}
 
 }

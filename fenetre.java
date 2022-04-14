@@ -17,9 +17,16 @@ public class fenetre extends JFrame {
     Texte leTexte = new Texte(nomDuFichierALire);
     String[] tableauGroupesLettres = leTexte.decoupe();
     List<String> list = Arrays.asList(tableauGroupesLettres);
+    ArrayList<String> liste_mots = new ArrayList<>(list);
 
     Texte mots_reponse = new Texte("wordle-guesses.txt");
     String[] tableau_reponse = mots_reponse.decoupe();
+    List<String> liste_reponse = Arrays.asList(tableau_reponse);
+    ArrayList<String> array_reponse = new ArrayList<>(liste_reponse);
+
+    Texte permutations = new Texte("permutations.txt");
+    String[] tableau_permutations = permutations.decoupe();
+    Quintuple[] possibility = permutations.decoupeToQuintuples(tableau_permutations);
 
     // réponse
     String reponse = tableau_reponse[(int) (Math.random() * tableau_reponse.length)];
@@ -31,8 +38,10 @@ public class fenetre extends JFrame {
 
     Color couleurBoutonVal = new Color(0, 71, 148, 200);
 
+    findWord robot = new findWord(liste_mots, array_reponse, possibility);
+
     public fenetre() {
-        
+
         // dimension de base
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension marge = new Dimension(2 * screenSize.width / 5, screenSize.height);
@@ -65,7 +74,7 @@ public class fenetre extends JFrame {
         JTextField locomotus = new JTextField("by LOCOMOTUS");
         locomotus.setEditable(false);
         locomotus.setBackground(Color.black);
-        locomotus.setFont(new Font("Montserrat", Font.BOLD , 15));
+        locomotus.setFont(new Font("Montserrat", Font.BOLD, 15));
         locomotus.setForeground(Color.white);
         locomotus.setBorder(null);
         locomotus.setHorizontalAlignment(JTextField.CENTER);
@@ -89,13 +98,13 @@ public class fenetre extends JFrame {
 
         JPanel textArea = new JPanel();
         textArea.setBackground(Color.BLACK);
-        
+
         clavierArea = new JTextField(20);
         clavierArea.setBackground(Color.DARK_GRAY);
         clavierArea.setForeground(Color.WHITE);
         clavierArea.setFont(new Font("Montserrat", Font.ITALIC, 12));
         clavierArea.setPreferredSize(new Dimension(50, 25));
-        clavierArea.setBorder(BorderFactory.createLineBorder(Color.WHITE , 1));
+        clavierArea.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 
         JButton valide = new JButton("Valider mot");
         valide.setBorderPainted(true);
@@ -403,24 +412,24 @@ public class fenetre extends JFrame {
     public void setTimeout(Object changeBackground, int delay) {
     }
 
-    public String chargerMot(){
+    public String chargerMot() {
         String nouveauMot = clavierArea.getText();
         nouveauMot = nouveauMot.toLowerCase();
         System.out.println(nouveauMot);
         clavierArea.setText("");
         return nouveauMot;
-        
+
     }
 
-    public JButton[][] tabButtons(){
+    public JButton[][] tabButtons() {
         return this.txtlettre;
     }
 
-    public JButton[] getClavier(){
+    public JButton[] getClavier() {
         return this.toucheClavier;
     }
 
-    public HashMap<String, Integer> getlaHmap(){
+    public HashMap<String, Integer> getlaHmap() {
         return this.map;
     }
 }

@@ -39,6 +39,17 @@ public class Texte {
         return tableauGroupesLettres;
     }
 
+    public Quintuple[] decoupeToQuintuples(String[] a) {
+        Quintuple[] possibility = new Quintuple[a.length];
+
+        for (int i = 0; i < possibility.length; i++) {
+            int j = 0;
+            possibility[i] = new Quintuple(a[i].charAt(j), a[i].charAt(j + 1),
+                    a[i].charAt(j + 2), a[i].charAt(j + 3), a[i].charAt(j + 4));
+        }
+        return possibility;
+    }
+
     public Texte(String nomFichier) {
         try {
             listeLignes = Files.readAllLines(Paths.get(nomFichier), Charset.defaultCharset());

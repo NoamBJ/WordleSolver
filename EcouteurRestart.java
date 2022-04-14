@@ -27,5 +27,6 @@ public class EcouteurRestart implements ActionListener {
         }
         fen.setX(0);
         fen.nouvRep();
+
     }
 }
