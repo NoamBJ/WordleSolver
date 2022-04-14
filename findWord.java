@@ -713,7 +713,7 @@ public class findWord {
     }
 
     // joue pour trouver un mot avec le quintuple donné par l'utilisateur
-    public void joue(Quintuple quintuple_rep, String word) {
+    public String joue(Quintuple quintuple_rep, String word) {
         // Scanner read_quintuple = new Scanner(System.in);
 
         // String word = "slane";
@@ -726,7 +726,7 @@ public class findWord {
         // Quintuple quintuple_rep = new Quintuple(input.charAt(0), input.charAt(1),
         // input.charAt(2), input.charAt(3),
         // input.charAt(4));
-        long start = System.currentTimeMillis();
+        // long start = System.currentTimeMillis();
         this.liste_mots.remove(word);
         this.liste_reponse = retireMot(quintuple_rep, word, this.liste_reponse);
         for (int j = 0; j < this.liste_mots.size(); j++) {
@@ -734,20 +734,21 @@ public class findWord {
             valeur_moyenne_mots.add(valeur);
             map_reponse.put(valeur, this.liste_mots.get(j));
         }
-        for (String s : this.liste_reponse) {
-            System.out.print(s + " ");
-        }
+        // for (String s : this.liste_reponse) {
+        // System.out.print(s + " ");
+        // }
 
         Collections.sort(valeur_moyenne_mots, Collections.reverseOrder());
 
-        long finish = System.currentTimeMillis();
-        long time = finish - start;
-        System.out.println("\n temps ecoule " + time);
-        System.out.println("la liste de mot réponse fait mainteant " +
-                this.liste_reponse.size() + " mots");
-        System.out.println("valeur moyenne = " + valeur_moyenne_mots.get(0));
+        // long finish = System.currentTimeMillis();
+        // long time = finish - start;
+        // System.out.println("\n temps ecoule " + time);
+        // System.out.println("la liste de mot réponse fait mainteant " +
+        // this.liste_reponse.size() + " mots");
+        // System.out.println("valeur moyenne = " + valeur_moyenne_mots.get(0));
         word = map_reponse.get(valeur_moyenne_mots.get(0));
-        System.out.println("meilleur mot = " + word);
+        // System.out.println("meilleur mot = " + word);
         // }
+        return "meilleur mot = " + word;
     }
 }

@@ -11,14 +11,17 @@ public class EcouteurEnter implements ActionListener {
 	private JButton[][] txt;
 	private JButton[] clavier;
 	private HashMap<String, Integer> m;
+	private JTextArea areaTriche;
 
 	String nomDuFichierALire = "dicoOrdered.txt";
 
-	public EcouteurEnter(fenetre fen, JButton[][] txt, JButton[] clavier, HashMap<String, Integer> m) {
+	public EcouteurEnter(fenetre fen, JButton[][] txt, JButton[] clavier, HashMap<String, Integer> m,
+			JTextArea areaTriche) {
 		this.fen = fen;
 		this.txt = txt;
 		this.clavier = clavier;
 		this.m = m;
+		this.areaTriche = areaTriche;
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class EcouteurEnter implements ActionListener {
 			if (fen.getX() == 6 && !kelawin(word, input)) {
 				JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
 			} else if (kelawin(word, input)) {
-				kelawin(word, input);
+
 			} else {
 				vert(word, input);
 				containChar(word, input);
@@ -42,7 +45,8 @@ public class EcouteurEnter implements ActionListener {
 			}
 			Quintuple q = stringToQuintuple(quintuple());
 			if (!kelawin(word, input)) {
-				fen.robot.joue(q, input);
+				System.out.println(fen.robot.joue(q, input));
+				areaTriche.setText(fen.robot.joue(q, input));
 			}
 
 		}
@@ -59,7 +63,7 @@ public class EcouteurEnter implements ActionListener {
 			if (fen.getX() == 6) {
 				JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
 			} else if (kelawin(word, input)) {
-				kelawin(word, input);
+
 			} else {
 				vert(word, input);
 				containChar(word, input);

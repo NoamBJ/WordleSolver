@@ -37,6 +37,8 @@ public class fenetre extends JFrame {
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
+    JTextArea areaTriche;
+
     private JTextField clavierArea;
 
     Color couleurBoutonVal = new Color(0, 71, 148, 200);
@@ -69,36 +71,38 @@ public class fenetre extends JFrame {
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
 
-        //PANEL TRICHE
+        // PANEL TRICHE
         JPanel triche = new JPanel();
         triche.setLayout(new BorderLayout());
         triche.setBackground(Color.BLACK);
         triche.setBorder(BorderFactory.createMatteBorder(1, 1, 70, 70, Color.BLACK));
-        //triche.setBounds(70, 50, 40, 60);
+        // triche.setBounds(70, 50, 40, 60);
         triche.setVisible(true);
-        JTextArea areaTriche = new JTextArea();
-        areaTriche.setPreferredSize(new Dimension(600,100));
+        areaTriche = new JTextArea();
+        areaTriche.setEditable(false);
+        areaTriche.setPreferredSize(new Dimension(400, 100));
         areaTriche.setBackground(new Color(108, 140, 137));
         areaTriche.setForeground(Color.BLACK);
-        areaTriche.setFont(new Font("Gill Sans MT Ext Condensed Bold",Font.PLAIN, 30));
+        areaTriche.setFont(new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30));
         Border bord = BorderFactory.createLoweredBevelBorder();
         areaTriche.setBorder(BorderFactory.createTitledBorder(bord, "- LOCOMOTUS-IA -",
-        TitledBorder.LEFT,TitledBorder.TOP, new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN , 30), Color.DARK_GRAY));
+                TitledBorder.LEFT, TitledBorder.TOP, new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30),
+                Color.DARK_GRAY));
         triche.add(areaTriche);
-        
+
         JPanel noTriche = new JPanel();
         ImageIcon gif = new ImageIcon("giphy.gif");
         JLabel imageBot = new JLabel(gif);
         noTriche.setLayout(new BorderLayout());
         noTriche.setBackground(Color.BLACK);
-        noTriche.setPreferredSize(new Dimension(670,100));
+        noTriche.setPreferredSize(new Dimension(670, 100));
         noTriche.setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100, Color.BLACK));
         noTriche.add(imageBot);
-        //noTriche.setBorder(BorderFactory.createMatteBorder(100, 70, 100, 70, Color.BLUE));
+        // noTriche.setBorder(BorderFactory.createMatteBorder(100, 70, 100, 70,
+        // Color.BLUE));
 
-        
         // ajouter txt locomotus
-        
+
         JPanel locom = new JPanel();
         locom.setLayout(new GridLayout());
         locom.setBackground(Color.BLACK);
@@ -270,7 +274,7 @@ public class fenetre extends JFrame {
         enter.setPreferredSize(new Dimension(60, 40));
         enter.setFocusable(false);
         enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
-        enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map));
+        enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map, areaTriche));
 
         ligne3.add(enter);
 
@@ -465,4 +469,9 @@ public class fenetre extends JFrame {
     public HashMap<String, Integer> getlaHmap() {
         return this.map;
     }
+
+    public JTextArea getTextArea() {
+        return this.areaTriche;
+    }
+
 }
