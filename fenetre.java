@@ -78,7 +78,7 @@ public class fenetre extends JFrame {
         triche.setBorder(BorderFactory.createMatteBorder(1, 1, 70, 70, Color.BLACK));
         // triche.setBounds(70, 50, 40, 60);
         triche.setVisible(true);
-        areaTriche = new JTextArea();
+        areaTriche = new JTextArea("Best opener is Slane");
         areaTriche.setEditable(false);
         areaTriche.setPreferredSize(new Dimension(400, 100));
         areaTriche.setBackground(new Color(108, 140, 137));

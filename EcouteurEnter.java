@@ -40,7 +40,7 @@ public class EcouteurEnter implements ActionListener {
 			} else {
 				vert(word, input);
 				containChar(word, input);
-				quintuple();
+				// couleur(quintuple(), input);
 				System.out.println(quintuple());
 			}
 			Quintuple q = stringToQuintuple(quintuple());
@@ -60,16 +60,42 @@ public class EcouteurEnter implements ActionListener {
 		if (fen.verifieMot(input)) {
 
 			fen.changementLigne();
-			if (fen.getX() == 6) {
+			if (fen.getX() == 6 && !kelawin(word, input)) {
 				JOptionPane.showMessageDialog(fen, "T'es trop un looser. Le bon mot etait " + word, "Looser", 1);
 			} else if (kelawin(word, input)) {
 
 			} else {
 				vert(word, input);
 				containChar(word, input);
-
+				quintuple();
+				System.out.println(quintuple() + "yooooooooooooo");
 			}
+			Quintuple q = stringToQuintuple(quintuple());
+			if (!kelawin(word, input)) {
+				// System.out.println(fen.robot.joue(q, input));
+				// areaTriche.setText(fen.robot.joue(q, input));
+			}
+
 		}
+	}
+
+	public void couleur(StringBuilder str, String input) {
+		for (int i = 0; i < str.length(); i++) {
+			char c = input.charAt(i);
+			int value = m.get(String.valueOf(c).toUpperCase());
+			if (str.charAt(i) == '0') {
+				clavier[value].setForeground(Color.gray);
+				txt[fen.getX() - 1][i].setForeground(Color.gray);
+			} else if (str.charAt(i) == '1') {
+				clavier[value].setForeground(Color.orange);
+				txt[fen.getX() - 1][i].setForeground(Color.orange);
+			} else {
+				clavier[value].setForeground(Color.green);
+				txt[fen.getX() - 1][i].setForeground(Color.green);
+			}
+
+		}
+
 	}
 
 	public void vert(String word, String input) {
