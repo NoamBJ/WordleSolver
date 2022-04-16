@@ -749,6 +749,6 @@ public class findWord {
         word = map_reponse.get(valeur_moyenne_mots.get(0));
         // System.out.println("meilleur mot = " + word);
         // }
-        return "meilleur mot = " + word;
+        return "meilleur mot = \n" + word;
     }
 }
