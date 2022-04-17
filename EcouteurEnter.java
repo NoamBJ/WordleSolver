@@ -1,9 +1,6 @@
 import java.awt.Color;
 import java.awt.event.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.ArrayList;
-
 import javax.swing.*;
 
 public class EcouteurEnter implements ActionListener {
@@ -62,8 +59,9 @@ public class EcouteurEnter implements ActionListener {
 
 			} else {
 				couleur(quintuple, input);
-				// System.out.println(fen.robot.joue(q, input));
-				// areaTriche.setText(fen.robot.joue(q, input));
+				// System.out.println(fen.robot.joue(fen.robot.stringToQuintuple(quintuple),
+				// input));
+				areaTriche.setText(fen.robot.joue(fen.robot.stringToQuintuple(quintuple), input));
 			}
 		}
 	}

@@ -1,7 +1,4 @@
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
 
 public class EcouteurRestart implements ActionListener {
     private fenetre fen;

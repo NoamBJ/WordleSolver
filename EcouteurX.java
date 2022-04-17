@@ -1,6 +1,4 @@
 import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
 
 public class EcouteurX implements ActionListener {
     private HelpFenetre h;

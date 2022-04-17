@@ -1,9 +1,5 @@
 import java.awt.event.*;
 import java.util.*;
-import java.awt.*;
-import javax.swing.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class EcouteurClavier implements ActionListener {
   // actionPerformed indique les instructions a executer au clic du bouton

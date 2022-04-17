@@ -1,9 +1,6 @@
 import java.util.*;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class findWord {
     private ArrayList<String> liste_mots;
@@ -56,7 +53,7 @@ public class findWord {
             possibility[i] = new Quintuple(permutations[i].charAt(j), permutations[i].charAt(j + 1),
                     permutations[i].charAt(j + 2), permutations[i].charAt(j + 3), permutations[i].charAt(j + 4));
         }
-        findWord robot = new findWord(liste_mots, liste_reponse, possibility);
+        //findWord robot = new findWord(liste_mots, liste_reponse, possibility);
         // robot.joue();
 
         // ArrayList<Double> valeur_moyenne_mots = new ArrayList<>();
@@ -623,7 +620,7 @@ public class findWord {
         return new Quintuple(mot.charAt(0), mot.charAt(1), mot.charAt(2), mot.charAt(3), mot.charAt(4));
     }
 
-    public static StringBuilder compareGuess(String reponse, String guess) {
+    public StringBuilder compareGuess(String reponse, String guess) {
 
         StringBuilder str = new StringBuilder("00000");
 
