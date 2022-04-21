@@ -1,10 +1,24 @@
-import static java.awt.Color.CYAN;
-
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -36,6 +50,8 @@ public class fenetre extends JFrame {
 
     String alphabet = "AZERTYUIOPQSDFGHJKLMWXCVBN";
     HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+    JTextArea areaTriche;
 
     private JTextField clavierArea;
 
@@ -69,36 +85,47 @@ public class fenetre extends JFrame {
         wordle.setBorder(null);
         wordle.setHorizontalAlignment(JTextField.CENTER);
 
-        //PANEL TRICHE
+        // PANEL TRICHE
         JPanel triche = new JPanel();
         triche.setLayout(new BorderLayout());
         triche.setBackground(Color.BLACK);
-        triche.setBorder(BorderFactory.createMatteBorder(1, 1, 70, 70, Color.BLACK));
-        //triche.setBounds(70, 50, 40, 60);
+        // triche.setBorder(BorderFactory.createMatteBorder(1, 1, 70, 70, Color.BLACK));
+        // triche.setBounds(70, 50, 40, 60);
         triche.setVisible(true);
-        JTextArea areaTriche = new JTextArea();
-        areaTriche.setPreferredSize(new Dimension(600,100));
+        areaTriche = new JTextArea("Best opener is Slane");
+        areaTriche.setEditable(false);
+        areaTriche.setPreferredSize(new Dimension(300, 100));
         areaTriche.setBackground(new Color(108, 140, 137));
         areaTriche.setForeground(Color.BLACK);
-        areaTriche.setFont(new Font("Gill Sans MT Ext Condensed Bold",Font.PLAIN, 30));
+        areaTriche.setFont(new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30));
         Border bord = BorderFactory.createLoweredBevelBorder();
         areaTriche.setBorder(BorderFactory.createTitledBorder(bord, "- LOCOMOTUS-IA -",
-        TitledBorder.LEFT,TitledBorder.TOP, new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN , 30), Color.DARK_GRAY));
+                TitledBorder.LEFT, TitledBorder.TOP, new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30),
+                Color.DARK_GRAY));
         triche.add(areaTriche);
-        
-        JPanel noTriche = new JPanel();
-        ImageIcon gif = new ImageIcon("giphy.gif");
-        JLabel imageBot = new JLabel(gif);
-        noTriche.setLayout(new BorderLayout());
-        noTriche.setBackground(Color.BLACK);
-        noTriche.setPreferredSize(new Dimension(670,100));
-        noTriche.setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100, Color.BLACK));
-        noTriche.add(imageBot);
-        //noTriche.setBorder(BorderFactory.createMatteBorder(100, 70, 100, 70, Color.BLUE));
 
-        
+        JPanel noTriche = new JPanel();
+        // ImageIcon gif = new ImageIcon("giphy.gif");
+        // JLabel imageBot = new JLabel(gif);
+        noTriche.setLayout(new BorderLayout());
+        noTriche.setBackground(Color.green);
+        noTriche.setPreferredSize(new Dimension(670, 100));
+        // noTriche.setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100,
+        // Color.BLACK));
+        // noTriche.add(imageBot);
+        // noTriche.setBorder(BorderFactory.createMatteBorder(100, 70, 100, 70,
+        // Color.BLUE));
+
         // ajouter txt locomotus
-        
+        JButton boutton_triche = new JButton("Stop la triche");
+        boutton_triche.setBackground(Color.black);
+        boutton_triche.setForeground(Color.white);
+        boutton_triche.setOpaque(true);
+        boutton_triche.setFocusable(false);
+        boutton_triche.setPreferredSize(new Dimension(100, 15));
+        boutton_triche.addActionListener(new EcouteurTriche(this, areaTriche));
+        noTriche.add(boutton_triche, BorderLayout.CENTER);
+
         JPanel locom = new JPanel();
         locom.setLayout(new GridLayout());
         locom.setBackground(Color.BLACK);
@@ -270,7 +297,7 @@ public class fenetre extends JFrame {
         enter.setPreferredSize(new Dimension(60, 40));
         enter.setFocusable(false);
         enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
-        enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map));
+        enter.addActionListener(new EcouteurEnter(this, txtlettre, toucheClavier, map, areaTriche));
 
         ligne3.add(enter);
 
@@ -299,7 +326,7 @@ public class fenetre extends JFrame {
         restart.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
         restart.setPreferredSize(new Dimension(150, 40));
         restart.setFocusable(false);
-        restart.addActionListener(new EcouteurRestart(this, txtlettre, toucheClavier));
+        restart.addActionListener(new EcouteurRestart(this));
 
         ligne4.add(restart);
 
@@ -335,6 +362,7 @@ public class fenetre extends JFrame {
         noms.add(satine);
         noms.add(moha);
         pBas.add(noms, BorderLayout.NORTH);
+
         clavier.add(ligne1);
         clavier.add(ligne2);
         clavier.add(ligne3);
@@ -344,8 +372,9 @@ public class fenetre extends JFrame {
         pGauche.add(imageGauche);
         pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
-        pBas.add(triche, BorderLayout.EAST);
         pBas.add(noTriche, BorderLayout.WEST);
+        pBas.add(triche, BorderLayout.EAST);
+        // pBas.add(noTriche, BorderLayout.WEST);
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
         add(pGauche, BorderLayout.WEST);
@@ -465,4 +494,9 @@ public class fenetre extends JFrame {
     public HashMap<String, Integer> getlaHmap() {
         return this.map;
     }
+
+    public JTextArea getTextArea() {
+        return this.areaTriche;
+    }
+
 }

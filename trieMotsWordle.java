@@ -22,7 +22,7 @@ public class trieMotsWordle {
 			if(a.length() == 5){
 				boolean yesLife = true;
 				Character[] listeMerde = new Character[10];
-				listeMerde[0] = 'Ãƒ';
+				listeMerde[0] = 'ƒ';
 				for(int i = 0; i<5 ;  i++){
 					if(a.charAt(i) == listeMerde[0]){
 						yesLife = false;
