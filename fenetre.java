@@ -89,40 +89,36 @@ public class fenetre extends JFrame {
         JPanel triche = new JPanel();
         triche.setLayout(new BorderLayout());
         triche.setBackground(Color.BLACK);
-        // triche.setBorder(BorderFactory.createMatteBorder(1, 1, 70, 70, Color.BLACK));
+        triche.setBorder(BorderFactory.createMatteBorder(screenSize.height/30, 1, screenSize.height/30, screenSize.width/20, Color.BLACK));
         // triche.setBounds(70, 50, 40, 60);
         triche.setVisible(true);
-        areaTriche = new JTextArea("Best opener is Slane");
+        areaTriche = new JTextArea("Best opener is : Slane");
         areaTriche.setEditable(false);
-        areaTriche.setPreferredSize(new Dimension(300, 100));
+        areaTriche.setPreferredSize(new Dimension(screenSize.width/5, screenSize.height/3 ));
         areaTriche.setBackground(new Color(108, 140, 137));
         areaTriche.setForeground(Color.BLACK);
         areaTriche.setFont(new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30));
         Border bord = BorderFactory.createLoweredBevelBorder();
-        areaTriche.setBorder(BorderFactory.createTitledBorder(bord, "- LOCOMOTUS-IA -",
+        areaTriche.setBorder(BorderFactory.createTitledBorder(bord, "- LOCOBOTUS - IA -",
                 TitledBorder.LEFT, TitledBorder.TOP, new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 30),
                 Color.DARK_GRAY));
         triche.add(areaTriche);
 
         JPanel noTriche = new JPanel();
-        // ImageIcon gif = new ImageIcon("giphy.gif");
-        // JLabel imageBot = new JLabel(gif);
+        ImageIcon gif = new ImageIcon("giphy2.gif");
         noTriche.setLayout(new BorderLayout());
         noTriche.setBackground(Color.green);
-        noTriche.setPreferredSize(new Dimension(670, 100));
-        // noTriche.setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100,
-        // Color.BLACK));
-        // noTriche.add(imageBot);
-        // noTriche.setBorder(BorderFactory.createMatteBorder(100, 70, 100, 70,
-        // Color.BLUE));
+        noTriche.setPreferredSize(new Dimension((int)(screenSize.width/(4)), screenSize.height/4));
 
         // ajouter txt locomotus
-        JButton boutton_triche = new JButton("Stop la triche");
+        JButton boutton_triche = new JButton(gif);
         boutton_triche.setBackground(Color.black);
         boutton_triche.setForeground(Color.white);
         boutton_triche.setOpaque(true);
         boutton_triche.setFocusable(false);
-        boutton_triche.setPreferredSize(new Dimension(100, 15));
+        boutton_triche.setPreferredSize(new Dimension(screenSize.width/(5), screenSize.height/4));
+        noTriche.setBorder(BorderFactory.createMatteBorder(screenSize.height/35, screenSize.width/40 , screenSize.height/35, screenSize.width/40, 
+        Color.BLACK));
         boutton_triche.addActionListener(new EcouteurTriche(this, areaTriche));
         noTriche.add(boutton_triche, BorderLayout.CENTER);
 
