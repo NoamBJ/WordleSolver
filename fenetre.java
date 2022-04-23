@@ -112,6 +112,7 @@ public class fenetre extends JFrame {
 
         // ajouter txt locomotus
         JButton boutton_triche = new JButton(gif);
+
         boutton_triche.setBackground(Color.black);
         boutton_triche.setForeground(Color.white);
         boutton_triche.setOpaque(true);
@@ -191,10 +192,10 @@ public class fenetre extends JFrame {
 
         // Panel gauche et droite afin de centrer la grille
         JPanel pGauche = new JPanel();
-        JLabel imageGauche = new JLabel(new ImageIcon("image_gauche.png"));
+        JLabel imageGauche = new JLabel(new ImageIcon("image_gauche.gif"));
         pGauche.setBackground(Color.black);
         JPanel pDroit = new JPanel();
-        JLabel imageDroite = new JLabel(new ImageIcon("image_droite.png"));
+        JLabel imageDroite = new JLabel(new ImageIcon("image_droite.gif"));
         pDroit.setBackground(Color.black);
 
         // création du Panel du bas
@@ -219,37 +220,16 @@ public class fenetre extends JFrame {
         ligne3.setPreferredSize(new Dimension(screenSize.width, 50));
         ligne4.setPreferredSize(new Dimension(screenSize.width, 50));
 
-        // JTextField auteurs = new JTextField("S.Pignol, P.Rochaix, N.Bires");
-        // auteurs.setEditable(false);
-        // auteurs.setBackground(Color.black);
-        // auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
-        // auteurs.setForeground(Color.decode("#B36200"));
-        // auteurs.setBorder(null);
+        //Liens externes insta
         JHyperlink sarah = new JHyperlink("S.Pignol,", "https://www.instagram.com/sarah.pgl/");
         JHyperlink paul = new JHyperlink("P.Rochaix,", "https://www.instagram.com/paulo.rchx/");
         JHyperlink noam = new JHyperlink("N.Bires,", "https://www.instagram.com/noambires/");
         JHyperlink clara = new JHyperlink("C.Lemiere,", "https://www.instagram.com/c.l.banana/");
         JHyperlink satine = new JHyperlink("S.Mialon,", "https://www.instagram.com/sat.mln11/");
         JHyperlink moha = new JHyperlink("Mention honorable à Moha.", "https://www.instagram.com/mohamedfayala/");
-        // auteurs.setEditable(false);
-        // auteurs.setBackground(Color.black);
-        // auteurs.setFont(new Font("Arial", Font.ITALIC, 12));
-        // auteurs.setForeground(Color.decode("#B36200"));
-        // // auteurs.setBorder(null);
-        // JTextField saisie = new JTextField(50);
-        // saisie.setBackground(Color.black);
-        // saisie.setForeground(Color.WHITE);
-        // saisie.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+       
 
-        // JButton enter = new JButton("ENTER");
-        // enter.setBorderPainted(true);
-        // enter.setOpaque(false);
-        // enter.setForeground(Color.WHITE);
-        // enter.setBackground(Color.black);
-        // enter.setPreferredSize(new Dimension(100, 50));
-        // enter.setFocusable(false);
-        // enter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
-
+        //Ajout du clavier
         String row1 = "AZERTYUIOP";
         for (int i = 0; i < row1.length(); i++) {
             toucheClavier[i] = new JButton();
@@ -284,7 +264,7 @@ public class fenetre extends JFrame {
                             new EcouteurLettre(this, Character.toString(alphabet.charAt(i)), txtlettre, x));
             ligne2.add(toucheClavier[i]);
         }
-
+        //Bouton enter clavier
         JButton enter = new JButton("ENTER");
         enter.setBorderPainted(true);
         enter.setOpaque(true);
@@ -313,7 +293,8 @@ public class fenetre extends JFrame {
                             new EcouteurLettre(this, Character.toString(alphabet.charAt(i)), txtlettre, x));
             ligne3.add(toucheClavier[i]);
         }
-
+        
+        //Bouton Restart
         JButton restart = new JButton("RESTART");
         restart.setBackground(new Color(94, 17, 20, 150));
         restart.setBorderPainted(true);
@@ -326,6 +307,7 @@ public class fenetre extends JFrame {
 
         ligne4.add(restart);
 
+        //Bouton supprimer
         JButton delete = new JButton(new ImageIcon("delete_icon.png"));
         delete.setPreferredSize(new Dimension(60, 40));
         delete.setOpaque(true);
@@ -350,7 +332,7 @@ public class fenetre extends JFrame {
         centralCee.add(textArea, BorderLayout.NORTH);
         add(centralCee, BorderLayout.CENTER);
         centralCee.setPreferredSize(new Dimension(200, 200));
-        // pBas.add(auteurs);
+        
         noms.add(sarah);
         noms.add(paul);
         noms.add(noam);
@@ -363,8 +345,7 @@ public class fenetre extends JFrame {
         clavier.add(ligne2);
         clavier.add(ligne3);
         clavier.add(ligne4);
-        // zoneSaisie.add(saisie);
-        // zoneSaisie.add(enter);
+        //ajout des images
         pGauche.add(imageGauche);
         pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
