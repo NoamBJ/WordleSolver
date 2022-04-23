@@ -75,8 +75,6 @@ public class fenetre extends JFrame {
         pHaut.setBackground(Color.BLACK); // ICI IMAAAAGE
         JLabel imageHaut = new JLabel(new ImageIcon("image_haut.png"));
         JButton help = new JButton(new ImageIcon("iconHelp.png"));
-        // JHyperlink wordle = new
-        // JHyperlink("Wordle","https://www.nytimes.com/games/wordle/index.html");
         JLabel wordle = new JLabel("WORDLE");
         wordle.setFocusable(false);
         wordle.setBackground(Color.BLUE);
@@ -104,15 +102,13 @@ public class fenetre extends JFrame {
                 Color.DARK_GRAY));
         triche.add(areaTriche);
 
+        //Panel Bouton stop triche
         JPanel noTriche = new JPanel();
         ImageIcon gif = new ImageIcon("giphy2.gif");
         noTriche.setLayout(new BorderLayout());
         noTriche.setBackground(Color.green);
         noTriche.setPreferredSize(new Dimension((int)(screenSize.width/(4)), screenSize.height/4));
-
-        // ajouter txt locomotus
         JButton boutton_triche = new JButton(gif);
-
         boutton_triche.setBackground(Color.black);
         boutton_triche.setForeground(Color.white);
         boutton_triche.setOpaque(true);
@@ -123,6 +119,7 @@ public class fenetre extends JFrame {
         boutton_triche.addActionListener(new EcouteurTriche(this, areaTriche));
         noTriche.add(boutton_triche, BorderLayout.CENTER);
 
+        //Texte locomotus Panel du haut
         JPanel locom = new JPanel();
         locom.setLayout(new GridLayout());
         locom.setBackground(Color.BLACK);
@@ -133,7 +130,7 @@ public class fenetre extends JFrame {
         locomotus.setForeground(Color.white);
         locomotus.setBorder(null);
         locomotus.setHorizontalAlignment(JTextField.CENTER);
-
+        //Bouton help
         help.setBackground(Color.black);
         help.setBorderPainted(false);
         help.setOpaque(false);
@@ -151,22 +148,22 @@ public class fenetre extends JFrame {
         p2.setBackground(Color.black);
         p2.setLayout(new GridLayout(6, 5, 5, 5)); // lignes,colonnes,espacement vertical et horizontal
 
+        //Panel du haut pour entrer le mot
         JPanel textArea = new JPanel();
         textArea.setBackground(Color.BLACK);
-
-        clavierArea = new JTextField(20);
+        clavierArea = new JTextField(12);
         clavierArea.setBackground(Color.DARK_GRAY);
         clavierArea.setForeground(Color.WHITE);
-        clavierArea.setFont(new Font("Montserrat", Font.ITALIC, 12));
-        clavierArea.setPreferredSize(new Dimension(50, 25));
+        clavierArea.setFont(new Font("Montserrat", Font.ITALIC, 15));
+        clavierArea.setPreferredSize(new Dimension(screenSize.width/8,screenSize.height/30));
         clavierArea.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
+            //Bouton valider mot
         JButton valide = new JButton("Valider mot");
         valide.setBorderPainted(true);
         valide.setOpaque(true);
         valide.setForeground(Color.WHITE);
         valide.setBackground(couleurBoutonVal);
-        valide.setPreferredSize(new Dimension(90, 40));
+        valide.setPreferredSize(new Dimension(screenSize.width/17, screenSize.height/27));
         valide.setFocusable(false);
         valide.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         valide.addActionListener(new EcouteurClavier(this));
@@ -177,7 +174,6 @@ public class fenetre extends JFrame {
         for (int i = 0; i < txtlettre.length; i++) {
             for (int j = 0; j < txtlettre[i].length; j++) {
                 txtlettre[i][j] = new JButton();
-                // txtlettre[i][j].setEnabled(false); marche pas avec false
                 txtlettre[i][j].setForeground(Color.white);
                 txtlettre[i][j].setBackground(Color.BLACK);
                 txtlettre[i][j].setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
