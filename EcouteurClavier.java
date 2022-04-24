@@ -22,10 +22,7 @@ public class EcouteurClavier implements ActionListener {
           EcouteurLettre ec = new EcouteurLettre(fen, l, fen.tabButtons(), fen.getX());
           ec.effectuer();
         }
-        // long millis = System.currentTimeMillis();
-        // while(System.currentTimeMillis()< (millis+1000)){
-        // wait
-        // }
+        
         EcouteurEnter ecE = new EcouteurEnter(fen, fen.tabButtons(), fen.getClavier(), fen.getlaHmap(),
             fen.getTextArea());
         ecE.execute();

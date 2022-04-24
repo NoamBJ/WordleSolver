@@ -314,7 +314,7 @@ public class fenetre extends JFrame {
         delete.setContentAreaFilled(false);
         ligne3.add(delete);
 
-        // ajout des composants
+        // ajout des composants dans leurs panels respectifs
 
         pack();
         locom.add(locomotus);
@@ -341,13 +341,14 @@ public class fenetre extends JFrame {
         clavier.add(ligne2);
         clavier.add(ligne3);
         clavier.add(ligne4);
-        //ajout des images
+
         pGauche.add(imageGauche);
         pDroit.add(imageDroite);
         pBas.add(clavier, BorderLayout.CENTER);
         pBas.add(noTriche, BorderLayout.WEST);
         pBas.add(triche, BorderLayout.EAST);
-        // pBas.add(noTriche, BorderLayout.WEST);
+
+        //Ajout des différents panels
         add(pBas, BorderLayout.SOUTH);
         pBas.setPreferredSize(new Dimension(1000, screenSize.height / 3));
         add(pGauche, BorderLayout.WEST);

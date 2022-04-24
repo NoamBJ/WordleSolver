@@ -37,8 +37,6 @@ public class EcouteurEnter implements ActionListener {
 
 			} else {
 				couleur(quintuple, input);
-				// System.out.println(fen.robot.joue(fen.robot.stringToQuintuple(quintuple),
-				// input));
 				areaTriche.setText(fen.robot.joue(fen.robot.stringToQuintuple(quintuple), input));
 			}
 		}
@@ -59,8 +57,6 @@ public class EcouteurEnter implements ActionListener {
 
 			} else {
 				couleur(quintuple, input);
-				// System.out.println(fen.robot.joue(fen.robot.stringToQuintuple(quintuple),
-				// input));
 				areaTriche.setText(fen.robot.joue(fen.robot.stringToQuintuple(quintuple), input));
 			}
 		}
